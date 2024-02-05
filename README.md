@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="public/assets/favicon.svg" alt="Logo" width="80" height="80">
+    <img src="public/assets/favicon.jpg" alt="Logo" width="80" height="auto">
   </a>
 
 <h3 align="center">The Old Cesena Times | by MV</h3>
