@@ -9,15 +9,21 @@ export default {
 			pt: ['PT Serif', 'serif'],
 		},
 		colors: {
-			white: '#000000',
-			black: '#ffffff',
+			white: '#ffffff',
+			black: '#000000',
 			red: '#d0021b',
 			gray: {
 				100: '#f7f7f7',
 				200: '#e2e2e2',
 			},
+			blue: '#326890',
 		},
-		extend: {},
+		extend: {
+			fontSize: {
+				10: '0.625rem',
+				24: '1.5rem',
+			},
+		},
 	},
 	plugins: [],
 };
