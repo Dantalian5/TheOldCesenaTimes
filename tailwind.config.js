@@ -15,6 +15,7 @@ export default {
 			gray: {
 				100: '#f7f7f7',
 				200: '#e2e2e2',
+				300: '#5a5a5a',
 			},
 			blue: '#326890',
 		},
@@ -22,6 +23,7 @@ export default {
 			fontSize: {
 				10: '0.625rem',
 				24: '1.5rem',
+				30: '1.875rem',
 			},
 		},
 	},
