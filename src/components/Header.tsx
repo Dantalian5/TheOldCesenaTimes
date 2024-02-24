@@ -26,7 +26,7 @@ const Header = () => {
 				</button>
 			</section>
 			<section className="w-full flex items-center justify-between px-5 py-3 border-y border-grey-200 bg-gray-100">
-				<p className="font-franklin font-bold text-10 text-black">
+				<p className="font-franklin font-bold text-10 text-black-100">
 					{getDate()}
 				</p>
 				<p className="font-franklin font-normal text-10 text-blue uppercase">
