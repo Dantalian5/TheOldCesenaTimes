@@ -75,3 +75,28 @@ export const svgPlay = (
 		/>
 	</svg>
 );
+export const svgClose = (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="18"
+		height="17"
+		viewBox="0 0 18 17"
+		fill="none">
+		<line
+			x1="2.06066"
+			y1="1.93934"
+			x2="16.0607"
+			y2="15.9393"
+			stroke="black"
+			strokeWidth="3"
+		/>
+		<line
+			x1="1.93934"
+			y1="15.9393"
+			x2="15.9393"
+			y2="1.93934"
+			stroke="black"
+			strokeWidth="3"
+		/>
+	</svg>
+);

@@ -42,7 +42,6 @@ const NewsCard = ({size, separator, news}: cardProps) => {
 	}
 
 	if (news.section === 'podcasts') {
-		console.log(news);
 		return (
 			<div className={` py-4  ${separatorFn(separator)}`}>
 				<div className="flex gap-x-3.5 mb-2">
@@ -54,7 +53,7 @@ const NewsCard = ({size, separator, news}: cardProps) => {
 					<div>
 						<div className="flex gap-x-2 mb-1.5">
 							<p className="font-franklin font-semibold uppercase text-10 text-black-100">
-								the headlines
+								{news.subsection === '' ? 'the headlines' : news.subsection}
 							</p>
 							<p className="font-franklin font-semibold uppercase text-10 text-gray-300">
 								audio
