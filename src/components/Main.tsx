@@ -39,10 +39,11 @@ const Main = () => {
 
 	return (
 		<main className="pt-4">
-			{newsMap.map((dataBlock) => (
+			{newsMap.map((dataBlock, index) => (
 				<NewsBlock
 					key={dataBlock[0].uri}
 					data={dataBlock}
+					index={index}
 				/>
 			))}
 		</main>

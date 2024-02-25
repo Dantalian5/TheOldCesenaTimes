@@ -56,3 +56,22 @@ export const svgPerson = (
 		/>
 	</svg>
 );
+export const svgPlay = (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none">
+		<circle
+			cx="12"
+			cy="12"
+			r="11.5"
+			stroke="#DFDFDF"
+		/>
+		<path
+			d="M17 12L9.5 16.3301V7.66987L17 12Z"
+			fill="#121212"
+		/>
+	</svg>
+);
