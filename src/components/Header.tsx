@@ -30,7 +30,7 @@ const Header = () => {
 					{getDate()}
 				</p>
 				<p className="font-franklin font-normal text-10 text-blue uppercase">
-					subscribe for €0.50/week
+					follow if you like 👍
 				</p>
 			</section>
 		</header>

@@ -1,25 +1,11 @@
-import NewsCard from '@/components/NewsCard';
+import NewsBlock from '@/components/NewsBlock';
 import data from '@/metadata.json';
 
-const newsType = (val: number) => {
-	switch (val) {
-		case 0:
-			return 'large';
-			break;
-		case 1:
-			return 'medium';
-			break;
-		default:
-			return 'small';
-			break;
-	}
-};
 const Main = () => {
 	let blockCount: number = 0;
 	let section: string = '';
 	let subsection: string = '';
 	const newsMap = [];
-	const newsMap12 = [];
 	const newsBlock = [];
 
 	for (const item of data) {
@@ -31,43 +17,36 @@ const Main = () => {
 			(section === item.section && subsection === item.subsection) ||
 			item.section === 'briefing'
 		) {
-			newsMap.push(
-				<NewsCard
-					size={item === data[0] ? 'xlarge' : newsType(blockCount)}
-					news={item}
-					key={item.uri}
-				/>
-			);
-
 			newsBlock.push(item);
 		} else {
 			section = item.section;
 			subsection = item.subsection;
-			newsMap.push(
-				<NewsCard
-					size={newsType(0)}
-					news={item}
-					key={item.uri}
-				/>
-			);
 
-			newsMap12.push(newsBlock.slice());
+			newsMap.push(newsBlock.slice(0));
 			newsBlock.length = 0;
 			blockCount = 0;
 			newsBlock.push(item);
 		}
 
-		blockCount < 4 ? blockCount++ : (blockCount = 0);
-
-		if (blockCount === 0) {
-			newsMap12.push(newsBlock.slice());
+		if (blockCount < 4) {
+			blockCount++;
+		} else {
+			blockCount = 0;
+			newsMap.push(newsBlock.slice(0));
 			newsBlock.length = 0;
 		}
-		console.log(newsBlock);
 	}
-	//console.log(newsBlock);
 
-	return <main className="pt-4">{newsMap}</main>;
+	return (
+		<main className="pt-4">
+			{newsMap.map((dataBlock) => (
+				<NewsBlock
+					key={dataBlock[0].uri}
+					data={dataBlock}
+				/>
+			))}
+		</main>
+	);
 };
 
 export default Main;
