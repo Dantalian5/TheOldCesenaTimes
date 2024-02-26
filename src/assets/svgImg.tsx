@@ -100,3 +100,18 @@ export const svgClose = (
 		/>
 	</svg>
 );
+export const svgArrow = (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="15"
+		height="9"
+		viewBox="0 0 15 9"
+		fill="none">
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M8.47916 7.39943L14.1005 1.77811L12.6863 0.363892L7.06494 5.98522L1.44363 0.363908L0.0294189 1.77812L5.65073 7.39943L5.61521 7.43496L7.02942 8.84917L7.06494 8.81365L7.10049 8.84919L8.5147 7.43498L8.47916 7.39943Z"
+			fill="black"
+		/>
+	</svg>
+);

@@ -24,6 +24,7 @@ export default {
 				600: '#333',
 			},
 			blue: '#326890',
+			blubtn: '#A9B9C8',
 		},
 		extend: {
 			fontSize: {
@@ -34,6 +35,9 @@ export default {
 				24: '1.5rem',
 				28: '1.75rem',
 				30: '1.875rem',
+			},
+			boxShadow: {
+				btn: '-1px 1px 1px 0px rgba(172, 190, 202, 0.25);',
 			},
 		},
 	},

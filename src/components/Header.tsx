@@ -1,15 +1,13 @@
 import {svgMenu, svgPerson} from '@/assets/svgImg';
 import {getDate} from '@/utils/getDate';
 
-const Header = () => {
+const Header = ({setNavbar}: {setNavbar: (arg: boolean) => void}) => {
 	return (
 		<header>
 			<section className="w-full flex items-center justify-between px-3 pt-2 pb-1">
 				<button
 					className="p-2 cursor-pointer"
-					onClick={() => {
-						console.log('click on menu');
-					}}>
+					onClick={() => setNavbar(true)}>
 					{svgMenu}
 				</button>
 				<div>

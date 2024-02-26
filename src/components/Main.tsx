@@ -36,7 +36,7 @@ const Main = () => {
 			newsBlock.length = 0;
 		}
 	}
-
+	console.log('render main');
 	return (
 		<main className="pt-4">
 			{newsMap.map((dataBlock, index) => (
@@ -51,5 +51,3 @@ const Main = () => {
 };
 
 export default Main;
-// todo : divide news on blocks of 4 or less related components
-// todo : add spaciators
