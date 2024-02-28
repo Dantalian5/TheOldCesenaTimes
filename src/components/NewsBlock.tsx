@@ -7,8 +7,8 @@ type dataProps = {
 const NewsBlock = ({data, index}: dataProps) => {
 	return (
 		<section className="px-5">
-			<div>
-				<div>
+			<div className="grid">
+				<div className=" sm:col-span-1">
 					<NewsCard
 						size={index === 0 ? 'xlarge' : 'large'}
 						separator={index === 0 ? 0 : 1}
@@ -16,7 +16,7 @@ const NewsBlock = ({data, index}: dataProps) => {
 					/>
 				</div>
 				{data[0].section !== 'podcasts' && (
-					<div>
+					<div className=" sm:col-start-2 sm:col-span-2 sm:row-start-1 sm:row-span-2 self-top">
 						<div className=" mt-3 py-4">
 							<picture>
 								<source srcSet={data[0].multimedia[1].url} />
@@ -34,7 +34,7 @@ const NewsBlock = ({data, index}: dataProps) => {
 				)}
 
 				{data.length > 1 && (
-					<div>
+					<div className="sm:col-span-1">
 						<NewsCard
 							size="medium"
 							separator={2}
@@ -42,24 +42,26 @@ const NewsBlock = ({data, index}: dataProps) => {
 						/>
 					</div>
 				)}
-				{data.length > 2 && (
-					<div>
-						<NewsCard
-							size="small"
-							separator={2}
-							news={data[2]}
-						/>
-					</div>
-				)}
-				{data.length > 3 && (
-					<div>
-						<NewsCard
-							size="small"
-							separator={2}
-							news={data[3]}
-						/>
-					</div>
-				)}
+				<div className="flex sm:col-span-3">
+					{data.length > 2 && (
+						<div className="">
+							<NewsCard
+								size="small"
+								separator={2}
+								news={data[2]}
+							/>
+						</div>
+					)}
+					{data.length > 3 && (
+						<div className="">
+							<NewsCard
+								size="small"
+								separator={2}
+								news={data[3]}
+							/>
+						</div>
+					)}
+				</div>
 			</div>
 		</section>
 	);

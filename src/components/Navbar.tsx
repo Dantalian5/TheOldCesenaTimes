@@ -7,6 +7,7 @@ const Navbar = ({
 	state: boolean;
 	setNavbar: (arg: boolean) => void;
 }) => {
+	console.log('render Navbar');
 	const [activeKey, setActiveKey] = useState<string | null>(null);
 	const handleClick = (key: string | null) => {
 		setActiveKey(activeKey === key ? null : key);

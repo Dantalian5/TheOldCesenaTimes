@@ -1,4 +1,5 @@
 const Footer = () => {
+	console.log('render Footer');
 	return (
 		<footer className="mt-6">
 			<div className="px-5">

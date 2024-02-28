@@ -2,6 +2,7 @@ import NewsBlock from '@/components/NewsBlock';
 import data from '@/metadata.json';
 
 const Main = () => {
+	console.log('render Main');
 	let blockCount: number = 0;
 	let section: string = '';
 	let subsection: string = '';
@@ -36,7 +37,6 @@ const Main = () => {
 			newsBlock.length = 0;
 		}
 	}
-	console.log('render main');
 	return (
 		<main className="pt-4">
 			{newsMap.map((dataBlock, index) => (

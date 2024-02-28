@@ -7,13 +7,13 @@ const App = () => {
 	const [navbarState, setNavbarState] = useState<boolean>(false);
 	return (
 		<div className="w-full min-w-[300px] min-h-svh">
+			{!navbarState && <Header setNavbar={setNavbarState} />}
 			<Navbar
 				state={navbarState}
 				setNavbar={setNavbarState}
 			/>
-			<Header setNavbar={setNavbarState} />
-			<Main />
-			<Footer />
+			{!navbarState && <Main />}
+			{!navbarState && <Footer />}
 		</div>
 	);
 };
