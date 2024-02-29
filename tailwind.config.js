@@ -39,6 +39,9 @@ export default {
 			boxShadow: {
 				btn: '-1px 1px 1px 0px rgba(172, 190, 202, 0.25);',
 			},
+			gridTemplateColumns: {
+				5: 'repeat(5, 1fr)',
+			},
 		},
 	},
 	plugins: [],
