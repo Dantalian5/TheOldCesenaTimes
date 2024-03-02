@@ -1,28 +1,29 @@
 type cardProps = {
   size: "xlarge" | "large" | "medium" | "small";
+  setup?: "left" | "right";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   news: any;
 };
-const NewsCard = ({ size, news }: cardProps) => {
+const NewsCard = ({ size, news, setup = "left" }: cardProps) => {
   const { title, abstract, url, kicker, byline } = news;
   let titleClass: string = " ";
   let showAbstract: boolean = true;
 
   switch (size) {
     case "xlarge":
-      titleClass = " text-30 sm:text-18";
+      titleClass = ` text-30 sm:text-18 ${setup === "right" && "lg:text-20"}`;
       showAbstract = true;
       break;
     case "large":
-      titleClass = " text-28 sm:text-18";
+      titleClass = ` text-28 sm:text-18 ${setup === "right" && "lg:text-18"}`;
       showAbstract = true;
       break;
     case "medium":
-      titleClass = " text-18 sm:text-base";
+      titleClass = ` text-18 sm:text-base ${setup === "right" && "lg:text-base"}`;
       showAbstract = true;
       break;
     case "small":
-      titleClass = " text-18 sm:text-base";
+      titleClass = ` text-18 sm:text-base ${setup === "right" && "lg:text-base"}`;
       showAbstract = false;
       break;
   }
@@ -47,17 +48,27 @@ const NewsCard = ({ size, news }: cardProps) => {
   }
 
   return (
-    <div className="">
+    <div>
       {headerKicker !== null && headerKicker}
-      <a href={url} className="mb-2 block">
-        <h3
-          className={`font-baskerville font-bold tracking-tight text-black-100 ${titleClass}`}
-        >
-          {title}
-        </h3>
-      </a>
+      <div className="flex gap-x-4">
+        <a href={url} className="mb-2 block">
+          <h3
+            className={`font-baskerville font-bold tracking-tight text-black-100 ${titleClass}`}
+          >
+            {title}
+          </h3>
+        </a>
+        <img
+          className={`hidden h-[90px] w-[90px] ${setup === "right" && "lg:block"}`}
+          src={news.multimedia[2].url}
+          alt={news.multimedia[2].caption}
+        />
+      </div>
+
       {showAbstract && (
-        <p className="font-pt text-base font-normal text-gray-400">
+        <p
+          className={`font-pt text-base font-normal text-gray-400 ${setup === "right" && "lg:hidden"}`}
+        >
           {abstract}
         </p>
       )}

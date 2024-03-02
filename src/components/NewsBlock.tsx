@@ -4,27 +4,38 @@ type dataProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   index: number;
+  side: "left" | "right";
 };
-const NewsBlock = ({ data, index }: dataProps) => {
+const NewsBlock = ({ data, index, side }: dataProps) => {
   return (
-    <section className="border-t-2 border-black-100 px-5 pb-2">
+    <section className="border-t-2 border-black-100 pb-2">
       {data[0].section === "opinion" && (
         <p className="my-2 font-franklin text-sm font-bold text-black-100">
           Opinion
         </p>
       )}
-      <div className="grid gap-x-4  sm:grid-cols-5">
+      <div
+        className={
+          side === "left" ? "grid gap-x-4  sm:grid-cols-5" : "flex flex-wrap"
+        }
+      >
         {data[0].section === "podcasts" ? (
           <div className="py-4 sm:col-span-5">
             <PodcastCard news={data[0]} />
           </div>
         ) : (
           <div className="py-4 sm:col-span-2">
-            <NewsCard size={index === 0 ? "xlarge" : "large"} news={data[0]} />
+            <NewsCard
+              size={index === 0 ? "xlarge" : "large"}
+              news={data[0]}
+              setup={side}
+            />
           </div>
         )}
         {data[0].section !== "podcasts" && (
-          <div className="self-top py-4 sm:col-span-3 sm:col-start-3 sm:row-span-2 sm:row-start-1">
+          <div
+            className={` self-top py-4 sm:col-span-3 sm:col-start-3 sm:row-span-2 sm:row-start-1 ${side === "right" && "lg:hidden"}`}
+          >
             <picture>
               <source srcSet={data[0].multimedia[1].url} />
               <img
