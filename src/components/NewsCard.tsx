@@ -8,15 +8,18 @@ const NewsCard = ({ size, news, setup = "left" }: cardProps) => {
   const { title, abstract, url, kicker, byline } = news;
   let titleClass: string = " ";
   let showAbstract: boolean = true;
+  let showImage: boolean = false;
 
   switch (size) {
     case "xlarge":
-      titleClass = ` text-30 sm:text-18 ${setup === "right" && "lg:text-20"}`;
+      titleClass = ` text-30 sm:text-18 ${setup === "right" && "lg:text-base"}`;
       showAbstract = true;
+      showImage = setup === "right" && true;
       break;
     case "large":
-      titleClass = ` text-28 sm:text-18 ${setup === "right" && "lg:text-18"}`;
+      titleClass = ` text-28 sm:text-18 ${setup === "right" && "lg:text-base"}`;
       showAbstract = true;
+      showImage = setup === "right" && true;
       break;
     case "medium":
       titleClass = ` text-18 sm:text-base ${setup === "right" && "lg:text-base"}`;
@@ -59,7 +62,7 @@ const NewsCard = ({ size, news, setup = "left" }: cardProps) => {
           </h3>
         </a>
         <img
-          className={`hidden h-[90px] w-[90px] ${setup === "right" && "lg:block"}`}
+          className={`hidden h-[90px] w-[90px] ${showImage && "lg:block"}`}
           src={news.multimedia[2].url}
           alt={news.multimedia[2].caption}
         />

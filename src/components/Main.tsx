@@ -81,7 +81,7 @@ const Main = () => {
         ))}
       </div>
       <span className="my-4 hidden flex-[0_0_1px] bg-gray-200 lg:block"></span>
-      <div className="w-full lg:flex-[1_1_50%]">
+      <div className="w-full lg:flex-[1_1_40%]">
         {newsMap[1].map((dataBlock, index) => (
           <NewsBlock
             key={dataBlock[0].uri}
