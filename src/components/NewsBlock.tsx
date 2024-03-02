@@ -7,8 +7,13 @@ type dataProps = {
 };
 const NewsBlock = ({ data, index }: dataProps) => {
   return (
-    <section className="px-5 pb-2">
-      <div className="grid gap-x-4 border-t-2 border-black-100 sm:grid-cols-5">
+    <section className="border-t-2 border-black-100 px-5 pb-2">
+      {data[0].section === "opinion" && (
+        <p className="my-2 font-franklin text-sm font-bold text-black-100">
+          Opinion
+        </p>
+      )}
+      <div className="grid gap-x-4  sm:grid-cols-5">
         {data[0].section === "podcasts" ? (
           <div className="py-4 sm:col-span-5">
             <PodcastCard news={data[0]} />
