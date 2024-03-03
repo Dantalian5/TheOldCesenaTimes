@@ -1,10 +1,98 @@
-import { svgMenu, svgPerson, svgSearch } from "@/assets/svgImg";
+import { svgMenu, svgPerson, svgSearch, svgArrow } from "@/assets/svgImg";
 import { getDate } from "@/utils/getDate";
 
+const navbarItems_top = {
+  "U.S.": {
+    sections: [
+      [
+        "U.S.",
+        "Politics",
+        "New York",
+        "California",
+        "Education",
+        "Health",
+        "Obituaries",
+        "Science",
+      ],
+      ["Climate", "Sports", "Business", "Tech", "The Upshot", "The Magazine"],
+    ],
+    ["U.S. Politics"]: [
+      ["2024 Elections", "Supreme Court", "Congress", "Biden Administration"],
+    ],
+  },
+  World: {
+    sections: [
+      ["World", "Africa", "Americas", "Asia", "Australia", "Canada"],
+      ["Europe", "Middle East", "Science", "Climate", "Health", "Obituaries"],
+    ],
+  },
+  Bussiness: {
+    sections: [
+      [
+        "Bussiness",
+        "Tech",
+        "Economy",
+        "Media",
+        "Finance and Markets",
+        "DealBook",
+        "Personal Tech",
+        "Energy Transition",
+        "Your Money",
+      ],
+    ],
+  },
+  Arts: {
+    section: [
+      [
+        "Todays Arts",
+        "Books",
+        "Best Sellers",
+        "Dance",
+        "Movies",
+        "Music",
+        "Television",
+        "Theater",
+        "Pop Culture",
+        "T Magazine",
+        "Visual Arts",
+      ],
+    ],
+  },
+  Lifestyle: {
+    section: [
+      [
+        "Lifestyle",
+        "Well",
+        "Travel",
+        "Style",
+        "Real State",
+        "Food",
+        "Fashion",
+        "Love",
+        "Your Money",
+        "Personal Tech",
+        "T Magazine",
+      ],
+    ],
+    columns: [["Modern Love", "The Hunt", "Social Qs", "The Ethicist"]],
+    well: [["Eat", "Move", "Mind", "Family", "Live", "Ask Well"]],
+  },
+  Opinion: {
+    section: [
+      ["Opinion", "Guest Essays", "Editorials", "Op-Docs", "Videos", "Letters"],
+    ],
+    topics: [
+      ["Politics", "World", "Business", "Tech", "Climate", "Health", "Culture"],
+    ],
+  },
+};
 const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
   console.log("render Header");
+
   return (
-    <header className="mx-auto grid max-w-[1285px] grid-cols-4 py-1 sm:pt-4 lg:px-11">
+    <header
+      className={`mx-auto grid max-w-[1285px] grid-cols-4 py-1 sm:pt-4 lg:px-11 `}
+    >
       <div className="col-span-1 col-start-1 flex gap-x-8">
         <button
           className="cursor-pointer px-5 py-2 lg:px-0"
@@ -43,67 +131,19 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
       <p className="border-grey-200 col-span-2 col-start-3 border-y bg-gray-100 px-5 py-3 text-right font-franklin text-10 font-normal uppercase text-blue sm:col-span-1 sm:col-start-4 sm:bg-white lg:col-span-1 lg:col-start-4 lg:self-center lg:border-0 lg:p-0">
         follow if you like 👍
       </p>
+      <nav className="col-span-4 row-start-3">
+        <ul className="flex items-stretch justify-center gap-x-6">
+          {Object.entries(navbarItems_top).map(([key, value]) => (
+            <li className="flex items-center gap-x-2">
+              {key}
+              {svgArrow}
+            </li>
+          ))}
+          <span className="block w-[1px] bg-black-200"></span>
+        </ul>
+      </nav>
     </header>
-    // <header className="mx-auto flex max-w-[1285px] flex-col lg:flex-col lg:px-11">
-    //   <section className="flex w-full items-center justify-between px-3 pb-1 pt-2 sm:pt-6 lg:px-0">
-    //     <button className="cursor-pointer p-2" onClick={() => setNavbar(true)}>
-    //       {svgMenu}
-    //     </button>
-    //     <div>
-    //       <h1 className=" mt-1.5 font-aguafina text-24 font-normal sm:text-28 lg:text-6xl">
-    //         The Old Cesena Times
-    //       </h1>
-    //     </div>
-    //     <button
-    //       className="cursor-pointer p-2"
-    //       onClick={() => {
-    //         console.log("click on sign in");
-    //       }}
-    //     >
-    //       {svgPerson}
-    //     </button>
-    //   </section>
-    //   <section className="border-grey-200 flex w-full items-center justify-between border-y bg-gray-100 px-5 py-3 sm:relative sm:bg-white lg:px-0">
-    //     <p className="font-franklin text-10 font-bold text-black-100 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-    //       {getDate()}
-    //     </p>
-    //     <p className="font-franklin text-10 font-normal uppercase text-blue sm:ml-auto">
-    //       follow if you like 👍
-    //     </p>
-    //   </section>
-    // </header>
   );
 };
 
 export default Header;
-
-{
-  /* <header className="mx-auto flex max-w-[1285px] flex-col lg:flex-col lg:px-11">
-      <section className="flex w-full items-center justify-between px-3 pb-1 pt-2 sm:pt-6 lg:px-0">
-        <button className="cursor-pointer p-2" onClick={() => setNavbar(true)}>
-          {svgMenu}
-        </button>
-        <div>
-          <h1 className=" mt-1.5 font-aguafina text-24 font-normal sm:text-28 lg:text-6xl">
-            The Old Cesena Times
-          </h1>
-        </div>
-        <button
-          className="cursor-pointer p-2"
-          onClick={() => {
-            console.log("click on sign in");
-          }}
-        >
-          {svgPerson}
-        </button>
-      </section>
-      <section className="border-grey-200 flex w-full items-center justify-between border-y bg-gray-100 px-5 py-3 sm:relative sm:bg-white lg:px-0">
-        <p className="font-franklin text-10 font-bold text-black-100 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-          {getDate()}
-        </p>
-        <p className="font-franklin text-10 font-normal uppercase text-blue sm:ml-auto">
-          follow if you like 👍
-        </p>
-      </section>
-    </header> */
-}
