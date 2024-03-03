@@ -69,7 +69,7 @@ const Main = () => {
 
   console.log(newsMap);
   return (
-    <main className="gap-x-4 px-5 pt-4 lg:flex lg:items-stretch lg:px-32">
+    <main className="mx-auto max-w-[1285px] gap-x-4 px-5 pt-4 lg:flex lg:items-stretch lg:px-11">
       <div className="w-full lg:flex-auto">
         {newsMap[0].map((dataBlock, index) => (
           <NewsBlock
@@ -82,13 +82,8 @@ const Main = () => {
       </div>
       <span className="my-4 hidden flex-[0_0_1px] bg-gray-200 lg:block"></span>
       <div className="w-full lg:flex-[1_1_40%]">
-        {newsMap[1].map((dataBlock, index) => (
-          <NewsBlock
-            key={dataBlock[0].uri}
-            data={dataBlock}
-            index={index}
-            side="right"
-          />
+        {newsMap[1].map((dataBlock) => (
+          <NewsBlock key={dataBlock[0].uri} data={dataBlock} side="right" />
         ))}
       </div>
     </main>
