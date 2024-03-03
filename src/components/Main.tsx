@@ -69,7 +69,7 @@ const Main = () => {
 
   console.log(newsMap);
   return (
-    <main className="mx-auto max-w-[1285px] gap-x-4 px-5 pt-4 lg:flex lg:items-stretch lg:px-11">
+    <main className="mx-auto max-w-[1285px] gap-x-4 px-5 lg:flex lg:items-stretch lg:px-11">
       <div className="w-full lg:flex-auto">
         {newsMap[0].map((dataBlock, index) => (
           <NewsBlock
