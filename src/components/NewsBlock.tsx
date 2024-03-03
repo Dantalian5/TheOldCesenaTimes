@@ -10,13 +10,13 @@ const headerKicker = (kicker: string, byline: string) => {
   switch (kicker) {
     case "News Analysis":
       return (
-        <p className="mb-1.5 font-franklin text-10 font-semibold uppercase text-black-100">
+        <p className="text-xxs mb-1.5 font-franklin font-semibold uppercase text-black-100">
           Analysis
         </p>
       );
     case "Guest Essay":
       return (
-        <p className="mb-1.5 font-baskerville text-10 font-bold uppercase text-gray-300">
+        <p className="text-xxs mb-1.5 font-baskerville font-bold uppercase text-gray-300">
           {byline.replace("By", "")}
         </p>
       );
@@ -51,7 +51,7 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
             <div className="flex gap-x-4">
               <a href={data[0].url} className="mb-2 block">
                 <h3
-                  className={`font-baskerville font-bold tracking-tight text-black-100 ${index === 0 ? "text-30 sm:text-18" : "text-28 sm:text-18"} ${side === "right" && "lg:text-base"}`}
+                  className={`font-baskerville font-bold tracking-tight text-black-100 ${index === 0 ? "text-3xl sm:text-lg" : "text-xxl sm:text-lg"} ${side === "right" && "lg:text-base"}`}
                 >
                   {data[0].title}
                 </h3>
@@ -82,7 +82,7 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
                 alt={data[0].multimedia[2].caption}
               />
             </picture>
-            <p className="ml-auto mt-1 w-fit font-franklin text-10 text-gray-300">
+            <p className="text-xxs ml-auto mt-1 w-fit font-franklin text-gray-300">
               {data[0].multimedia[0].copyright}
             </p>
           </div>
@@ -95,7 +95,7 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
             {headerKicker(data[1].kicker, data[1].byline)}
             <a href={data[1].url} className="mb-2 block">
               <h3
-                className={`font-baskerville text-18 font-bold tracking-tight text-black-100 sm:text-base`}
+                className={`font-baskerville text-lg font-bold tracking-tight text-black-100 sm:text-base`}
               >
                 {data[1].title}
               </h3>
@@ -115,7 +115,7 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
             {headerKicker(data[2].kicker, data[2].byline)}
             <a href={data[2].url} className="mb-2 block">
               <h3
-                className={`font-baskerville text-18 font-bold tracking-tight text-black-100 sm:text-base`}
+                className={`font-baskerville text-lg font-bold tracking-tight text-black-100 sm:text-base`}
               >
                 {data[2].title}
               </h3>
@@ -131,7 +131,7 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
               {headerKicker(data[3].kicker, data[3].byline)}
               <a href={data[3].url} className={`mb-2 block   `}>
                 <h3
-                  className={`font-baskerville text-18 font-bold tracking-tight text-black-100 sm:text-base`}
+                  className={`font-baskerville text-lg font-bold tracking-tight text-black-100 sm:text-base`}
                 >
                   {data[3].title}
                 </h3>

@@ -12,21 +12,21 @@ const NewsCard = ({ size, news, setup = "left" }: cardProps) => {
 
   switch (size) {
     case "xlarge":
-      titleClass = ` text-30 sm:text-18 ${setup === "right" && "lg:text-base"}`;
+      titleClass = ` text-3xl sm:text-lg ${setup === "right" && "lg:text-base"}`;
       showAbstract = true;
       showImage = setup === "right" && true;
       break;
     case "large":
-      titleClass = ` text-28 sm:text-18 ${setup === "right" && "lg:text-base"}`;
+      titleClass = ` text-xxl sm:text-lg ${setup === "right" && "lg:text-base"}`;
       showAbstract = true;
       showImage = setup === "right" && true;
       break;
     case "medium":
-      titleClass = ` text-18 sm:text-base ${setup === "right" && "lg:text-base"}`;
+      titleClass = ` text-lg sm:text-base ${setup === "right" && "lg:text-base"}`;
       showAbstract = true;
       break;
     case "small":
-      titleClass = ` text-18 sm:text-base ${setup === "right" && "lg:text-base"}`;
+      titleClass = ` text-lg sm:text-base ${setup === "right" && "lg:text-base"}`;
       showAbstract = false;
       break;
   }
@@ -34,18 +34,18 @@ const NewsCard = ({ size, news, setup = "left" }: cardProps) => {
   switch (kicker) {
     case "News Analysis":
       headerKicker = (
-        <p className="mb-1.5 font-franklin text-10 font-semibold uppercase text-black-100">
+        <p className="text-xxs mb-1.5 font-franklin font-semibold uppercase text-black-100">
           Analysis
         </p>
       );
       break;
     case "Guest Essay":
       headerKicker = (
-        <p className="mb-1.5 font-baskerville text-10 font-bold uppercase text-gray-300">
+        <p className="text-xxs mb-1.5 font-baskerville font-bold uppercase text-gray-300">
           {byline.replace("By", "")}
         </p>
       );
-      titleClass = " text-24 sm:text-20 tracking-tighter";
+      titleClass = " text-2xl sm:text-xl tracking-tighter";
       showAbstract = false;
       break;
   }
