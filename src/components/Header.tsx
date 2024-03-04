@@ -144,11 +144,12 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
         >
           {svgMenu}
         </button>
-        <div className="absolute left-0 top-0 z-20 min-h-full w-full border border-red bg-white px-6 pb-6 pt-0 lg:w-80">
+        {/* /------------------------- */}
+        <div className="absolute left-0 top-0 z-20 hidden min-h-full w-full border border-red bg-white px-6 pb-6 pt-0 lg:w-80">
           <nav className=" bg-white">
             <div className=" sticky top-0 bg-white py-6">
               <button
-                className="mb-9 cursor-pointer"
+                className="mb-9 cursor-pointer text-3xl text-black-100"
                 onClick={() => setNavbar(false)}
                 title="close menu"
               >
@@ -184,7 +185,7 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
                   {Object.entries(value).map(([section, subsection]) => (
                     <ul
                       className={`
-                        block flex flex-wrap gap-x-8 gap-y-4 py-3`}
+                        flex flex-wrap gap-x-8 gap-y-4 py-3`}
                       key={section}
                     >
                       <li className="w-full">
@@ -213,6 +214,7 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
             </ul>
           </nav>
         </div>
+        {/* /--------------------- */}
         <button
           className=" hidden cursor-pointer rounded text-xl text-black-100 hover:bg-gray-100 lg:block lg:p-2"
           title="Search"
@@ -233,7 +235,7 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
         <span className="bg-blue-200 text-xxs border-blue-300 hidden rounded border px-4 py-2 font-franklin font-bold uppercase text-white lg:block">
           Log in
         </span>
-        <span className="lg:hidden">{svgPerson}</span>
+        <span className="text-2xl text-black-100 lg:hidden">{svgPerson}</span>
       </button>
       <p className="text-xxs col-span-2 col-start-2 row-start-1 hidden text-center font-medium uppercase lg:block">
         By M.V.
