@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { svgArrow } from "@/assets/svgImg";
 
 const navbarItems_top = {
@@ -123,7 +124,7 @@ const navbarItems_bottom = {
     ],
   },
 };
-const Navbar = () => {
+const Navbar = memo(() => {
   console.log("render Navbar");
 
   return (
@@ -219,7 +220,7 @@ const Navbar = () => {
       </ul>
     </nav>
   );
-};
+});
 
 export default Navbar;
 

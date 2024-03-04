@@ -1,4 +1,5 @@
-const Footer = () => {
+import { memo } from "react";
+const Footer = memo(() => {
   console.log("render Footer");
   return (
     <footer className="mx-auto max-w-[1285px] py-6 lg:px-11">
@@ -77,6 +78,6 @@ const Footer = () => {
       </section>
     </footer>
   );
-};
+});
 
 export default Footer;

@@ -1,42 +1,10 @@
+import { memo } from "react";
 import NewsBlock from "@/components/NewsBlock";
-import data from "@/metadata.json";
+import { TypeArticle } from "@/utils/types";
 
-interface Multimedia {
-  url: string;
-  format: string;
-  height: number;
-  width: number;
-  type: string;
-  subtype: string;
-  caption: string;
-  copyright: string;
-}
-
-interface NewsArticle {
-  section: string;
-  subsection: string;
-  title: string;
-  abstract: string;
-  url: string;
-  uri: string;
-  byline: string;
-  item_type?: string;
-  updated_date?: string;
-  created_date?: string;
-  published_date?: string;
-  material_type_facet?: string;
-  kicker?: string;
-  des_facet?: string[];
-  org_facet?: string[];
-  per_facet?: string[];
-  geo_facet?: string[];
-  multimedia?: Multimedia[];
-  short_url?: string;
-}
-
-const Main = () => {
+const Main = memo(({ data }: { data: Array<TypeArticle> }) => {
   console.log("render Main");
-  const newsMap: Array<Array<Array<NewsArticle>>> = [];
+  const newsMap: Array<Array<Array<TypeArticle>>> = [];
   const opinionIndex: number = data.findIndex(
     (item) => item.section === "opinion",
   );
@@ -87,6 +55,6 @@ const Main = () => {
       </div>
     </main>
   );
-};
+});
 
 export default Main;
