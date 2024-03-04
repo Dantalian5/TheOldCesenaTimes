@@ -1,4 +1,10 @@
-import { svgMenu, svgPerson, svgSearch, svgArrow } from "@/assets/svgImg";
+import {
+  svgMenu,
+  svgPerson,
+  svgSearch,
+  svgClose,
+  svgArrow,
+} from "@/assets/svgImg";
 import { getDate } from "@/utils/getDate";
 
 const navbarItems_top = {
@@ -28,51 +34,20 @@ const navbarItems_top = {
   },
   Bussiness: {
     sections: [
-      [
-        "Bussiness",
-        "Tech",
-        "Economy",
-        "Media",
-        "Finance and Markets",
-        "DealBook",
-        "Personal Tech",
-        "Energy Transition",
-        "Your Money",
-      ],
+      ["Bussiness", "Tech", "Economy", "Media", "Finance and Markets"],
+      ["DealBook", "Personal Tech", "Energy Transition", "Your Money"],
     ],
   },
   Arts: {
     section: [
-      [
-        "Todays Arts",
-        "Books",
-        "Best Sellers",
-        "Dance",
-        "Movies",
-        "Music",
-        "Television",
-        "Theater",
-        "Pop Culture",
-        "T Magazine",
-        "Visual Arts",
-      ],
+      ["Todays Arts", "Books", "Best Sellers", "Dance", "Movies", "Music"],
+      ["Television", "Theater", "Pop Culture", "T Magazine", "Visual Arts"],
     ],
   },
   Lifestyle: {
     section: [
-      [
-        "Lifestyle",
-        "Well",
-        "Travel",
-        "Style",
-        "Real State",
-        "Food",
-        "Fashion",
-        "Love",
-        "Your Money",
-        "Personal Tech",
-        "T Magazine",
-      ],
+      ["Lifestyle", "Well", "Travel", "Style", "Real State", "Food"],
+      ["Fashion", "Love", "Your Money", "Personal Tech", "T Magazine"],
     ],
     columns: [["Modern Love", "The Hunt", "Social Qs", "The Ethicist"]],
     well: [["Eat", "Move", "Mind", "Family", "Live", "Ask Well"]],
@@ -160,17 +135,86 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
 
   return (
     <header
-      className={`mx-auto grid max-w-[1285px] grid-cols-4 py-1 sm:pt-4 lg:px-11 `}
+      className={`mx-auto grid max-w-[1285px] grid-cols-4 py-1 lg:px-11 `}
     >
       <div className="col-span-1 col-start-1 flex gap-x-2">
         <button
-          className="cursor-pointer px-5 py-2 text-xl text-black-100 lg:p-2"
+          className="cursor-pointer rounded px-5 py-2 text-xl text-black-100 hover:bg-gray-100 lg:p-2"
           onClick={() => setNavbar(true)}
         >
           {svgMenu}
         </button>
+        <div className="absolute left-0 top-0 z-20 min-h-full w-full border border-red bg-white px-6 pb-6 pt-0 lg:w-80">
+          <nav className=" bg-white">
+            <div className=" sticky top-0 bg-white py-6">
+              <button
+                className="mb-9 cursor-pointer"
+                onClick={() => setNavbar(false)}
+                title="close menu"
+              >
+                {svgClose}
+              </button>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="flex items-stretch gap-x-3"
+              >
+                <input
+                  type="text "
+                  className="flex-auto rounded border border-gray-300 px-3 py-2  font-franklin text-base font-normal text-black-100 placeholder:uppercase placeholder:text-gray-300"
+                  name="search"
+                  placeholder="search"
+                />
+                <button className=" min-w-9 rounded bg-blubtn p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
+                  go
+                </button>
+              </form>
+            </div>
+            <ul>
+              {Object.entries(navbarItems_top).map(([key, value]) => (
+                <li
+                  className="w-full border-b border-gray-200 last:border-0"
+                  key={key}
+                >
+                  <button
+                    className="flex w-full items-center justify-between py-6 font-franklin text-lg font-semibold tracking-tight"
+                    onClick={() => console.log("click")}
+                  >
+                    {key} {svgArrow}
+                  </button>
+                  {Object.entries(value).map(([section, subsection]) => (
+                    <ul
+                      className={`
+                        block flex flex-wrap gap-x-8 gap-y-4 py-3`}
+                      key={section}
+                    >
+                      <li className="w-full">
+                        <h4 className=" font-franklin text-sm font-medium uppercase text-gray-300">
+                          {section}
+                        </h4>
+                      </li>
+                      {subsection.map((column, index) => (
+                        <ul className="flex-auto" key={index}>
+                          {column.map((item, index) => (
+                            <li className="mb-4" key={index}>
+                              <a
+                                className="font-franklin text-lg font-medium"
+                                href=""
+                              >
+                                {item}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ))}
+                    </ul>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
         <button
-          className=" hidden cursor-pointer text-xl text-black-100 lg:block lg:p-2"
+          className=" hidden cursor-pointer rounded text-xl text-black-100 hover:bg-gray-100 lg:block lg:p-2"
           title="Search"
           onClick={() => {
             console.log("click on search");
@@ -208,97 +252,6 @@ const Header = ({ setNavbar }: { setNavbar: (arg: boolean) => void }) => {
       <p className="border-grey-200 text-xxs text-blue-300 col-span-2 col-start-3 border-y bg-gray-100 px-5 py-3 text-right font-franklin font-normal uppercase sm:col-span-1 sm:col-start-4 sm:bg-white lg:col-span-1 lg:col-start-4 lg:self-center lg:border-0 lg:p-0">
         follow if you like 👍
       </p>
-      <nav className="relative col-span-4 row-start-3 hidden border-y border-b-black-100 border-t-gray-200 lg:block">
-        <ul className="flex items-center justify-center">
-          {Object.entries(navbarItems_top).map(([key, value]) => (
-            <li
-              className="group flex items-center px-3 py-5 font-franklin text-xs font-medium text-black-100"
-              key={key}
-            >
-              <span className="mr-1 cursor-pointer border-b-2 border-white group-hover:border-black-100">
-                {key}
-              </span>
-
-              <span className={`cursor-pointer text-base text-gray-300`}>
-                {svgArrow}
-              </span>
-              <div
-                className={`shadow-menu pointer-events-none absolute left-1/2 top-full min-h-20 w-dvw -translate-x-1/2 gap-x-16 bg-white opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 `}
-              >
-                <div className="mx-auto flex w-full max-w-[1285px] gap-x-20 bg-white px-5 pb-10 pt-6 lg:px-11">
-                  {Object.entries(value).map(([section, subsection]) => (
-                    <div className={``} key={section}>
-                      <p className=" mb-4 font-franklin text-xs font-medium uppercase text-gray-300">
-                        {section}
-                      </p>
-                      <div className="flex gap-x-10">
-                        {subsection.map((column, index) => (
-                          <ul className=" min-w-24" key={index}>
-                            {column.map((item, index) => (
-                              <li className="mb-3 w-full" key={index}>
-                                <a
-                                  className="font-franklin text-sm font-medium"
-                                  href=""
-                                >
-                                  {item}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </li>
-          ))}
-          <span className="mx-3 block h-4 w-[1px] bg-gray-200"></span>
-          {Object.entries(navbarItems_bottom).map(([key, value]) => (
-            <li
-              className="group flex items-center px-3 py-5 font-franklin text-xs font-medium text-black-100"
-              key={key}
-            >
-              <span className="mr-1 cursor-pointer border-b-2 border-white group-hover:border-black-100">
-                {key}
-              </span>
-
-              <span className={`cursor-pointer text-base text-gray-300`}>
-                {svgArrow}
-              </span>
-              <div
-                className={`shadow-menu pointer-events-none absolute left-1/2 top-full min-h-20 w-dvw -translate-x-1/2 gap-x-16 bg-white opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 `}
-              >
-                <div className="mx-auto flex w-full max-w-[1285px] gap-x-20 bg-white px-5 pb-10 pt-6 lg:px-11">
-                  {Object.entries(value).map(([section, subsection]) => (
-                    <div className={``} key={section}>
-                      <p className=" mb-4 font-franklin text-xs font-medium uppercase text-gray-300">
-                        {section}
-                      </p>
-                      <div className="flex gap-x-10">
-                        {subsection.map((column, index) => (
-                          <ul className=" min-w-24" key={index}>
-                            {column.map((item, index) => (
-                              <li className="mb-3 w-full" key={index}>
-                                <a
-                                  className="font-franklin text-sm font-medium"
-                                  href=""
-                                >
-                                  {item}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 };
