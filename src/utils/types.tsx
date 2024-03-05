@@ -30,3 +30,13 @@ export interface TypeArticle {
   multimedia?: TypeMultimedia[];
   short_url?: string;
 }
+
+type TypeSectionContent = string[][];
+
+interface TypeSection {
+  [key: string]: TypeSectionContent | TypeSection; // Permitiría contenido de sección o una sección anidada
+}
+
+export type TypeNavbarItem = {
+  [category: string]: TypeSection;
+};

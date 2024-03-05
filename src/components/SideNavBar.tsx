@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { svgArrow, svgClose } from "@/assets/svgImg";
 import { navbarItems } from "@/utils/menuItems";
+import { TypeNavbarItem } from "@/utils/types";
 
 const SideNavBar = ({
   setNavbar,
