@@ -14,7 +14,7 @@ const App = () => {
       <Header setNavbar={setNavbarState} />
       {navbarState && <SideNavBar setNavbar={setNavbarState} />}
       <Navbar />
-      <div className={` ${navbarState ? "hidden" : "block"}`}>
+      <div className={` ${navbarState ? "hidden" : "block"} lg:block`}>
         <Main data={data} />
         <Footer />
       </div>

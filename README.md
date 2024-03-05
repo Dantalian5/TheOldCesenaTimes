@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Dantalian5/TheOldCesenaTimes">
-    <img src="public/assets/favicon.jpg" alt="Logo" width="80" height="auto">
+    <img src="public/assets/LogoFull.svg" alt="Logo" width="80" height="auto">
   </a>
 
 <h3 align="center">The Old Cesena Times | by MV</h3>
@@ -145,14 +145,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ### S2I tasks:
 
-- [ ] Replica of the NYT homepage.
+- [x] Replica of the NYT homepage.
 - [ ] Fetch news from the API and display them on the homepage.
-- [ ] Simple and user-friendly UI and UX. Organized and understandable app structure.
-- [ ] Responsive design.
+- [x] Simple and user-friendly UI and UX. Organized and understandable app structure.
+- [x] Responsive design.
 
 ### Features:
 
-- [ ] ....
+- [ ] Search trought the page.
 
 See the [open issues](https://github.com/Dantalian5/TheOldCesenaTimes/issues) for a full list of proposed features (and known issues).
 

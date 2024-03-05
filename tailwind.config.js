@@ -37,6 +37,7 @@ export default {
       boxShadow: {
         btn: "-1px 1px 1px 0px rgba(172, 190, 202, 0.25);",
         menu: "rgba(0, 0, 0, 0.1) 0px 10px 10px",
+        sidemenu: "rgba(0, 0, 0, 0.1) 4px 0px 6px 1px;",
       },
     },
   },
