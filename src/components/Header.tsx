@@ -1,15 +1,24 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { svgMenu, svgPerson, svgSearch } from "@/assets/svgImg";
 import { getDate } from "@/utils/getDate";
 
 const Header = memo(
   ({
     setNavbar,
+    setFilter,
+    filter,
   }: {
     setNavbar: React.Dispatch<React.SetStateAction<boolean>>;
+    setFilter: React.Dispatch<React.SetStateAction<string>>;
+    filter: string;
   }) => {
     console.log("render Header");
-
+    const [showFilter, setShowFilter] = useState<boolean>(false);
+    const [filterValue, setFilterValue] = useState<string>(filter);
+    console.log(filter, "->", filterValue);
+    useEffect(() => {
+      setFilterValue(filter);
+    }, [filter]);
     return (
       <header
         className={`mx-auto grid max-w-[1285px] grid-cols-4 py-1 lg:px-11 `}
@@ -21,15 +30,38 @@ const Header = memo(
           >
             {svgMenu}
           </button>
-          <button
-            className=" hidden cursor-pointer rounded text-xl text-black-100 hover:bg-gray-100 lg:block lg:p-2"
-            title="Search"
-            onClick={() => {
-              console.log("click on search");
-            }}
-          >
-            {svgSearch}
-          </button>
+          <div className="relative hidden lg:block">
+            <button
+              className=" cursor-pointer rounded text-xl text-black-100 hover:bg-gray-100 lg:p-2"
+              title="Search"
+              onClick={() => {
+                setShowFilter((prev: boolean) => !prev);
+              }}
+            >
+              {svgSearch}
+            </button>
+            {showFilter && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setFilter(filterValue);
+                }}
+                className=" absolute  -right-2 top-1/2 flex -translate-y-1/2 translate-x-full items-center gap-x-3"
+              >
+                <input
+                  type="text "
+                  className="flex-auto rounded border border-black-100 px-3 py-1  font-franklin text-base font-normal text-black-100 placeholder:uppercase placeholder:text-gray-300"
+                  name="search"
+                  placeholder="search"
+                  value={filterValue}
+                  onChange={(e) => setFilterValue(e.target.value)}
+                />
+                <button className=" bg-blue-100 min-w-9 rounded p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
+                  go
+                </button>
+              </form>
+            )}
+          </div>
         </div>
         <button
           className="col-span-1 col-start-4 cursor-pointer justify-self-end  px-5 py-2 lg:p-0"

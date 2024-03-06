@@ -152,7 +152,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ### Features:
 
-- [ ] Search trought the page.
+- [x] Search trought the page.
 
 See the [open issues](https://github.com/Dantalian5/TheOldCesenaTimes/issues) for a full list of proposed features (and known issues).
 

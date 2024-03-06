@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { svgArrow, svgClose } from "@/assets/svgImg";
 import { navbarItems } from "@/utils/menuItems";
-import { TypeNavbarItem } from "@/utils/types";
 
 const SideNavBar = ({
   setNavbar,
+  setFilter,
+  filter,
 }: {
   setNavbar: React.Dispatch<React.SetStateAction<boolean>>;
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  filter: string;
 }) => {
+  console.log("render SideNavBar");
   const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [filterValue, setFilterValue] = useState<string>(filter);
   const handleClick = (key: string | null) => {
     setActiveKey(activeKey === key ? null : key);
   };
@@ -23,14 +28,20 @@ const SideNavBar = ({
           {svgClose}
         </button>
         <form
-          onSubmit={(e) => e.preventDefault()}
-          className="flex items-stretch gap-x-3"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setFilter(filterValue);
+            setNavbar(false);
+          }}
+          className="flex items-stretch gap-x-3 lg:hidden"
         >
           <input
             type="text "
             className="flex-auto rounded border border-gray-300 px-3 py-2  font-franklin text-base font-normal text-black-100 placeholder:uppercase placeholder:text-gray-300"
             name="search"
             placeholder="search"
+            value={filterValue}
+            onChange={(e) => setFilterValue(e.target.value)}
           />
           <button className=" bg-blue-100 min-w-9 rounded p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
             go
