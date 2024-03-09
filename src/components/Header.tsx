@@ -15,7 +15,6 @@ const Header = memo(
     console.log("render Header");
     const [showFilter, setShowFilter] = useState<boolean>(false);
     const [filterValue, setFilterValue] = useState<string>(filter);
-    console.log(filter, "->", filterValue);
     useEffect(() => {
       setFilterValue(filter);
     }, [filter]);

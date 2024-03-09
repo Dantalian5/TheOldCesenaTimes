@@ -1,6 +1,12 @@
-import { memo } from "react";
+import { memo, useState } from "react";
+import { footerItems } from "@/utils/menuItems";
 const Footer = memo(() => {
   console.log("render Footer");
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const handleClick = (key: string | null) => {
+    setActiveKey(activeKey === key ? null : key);
+  };
+
   return (
     <footer className="mx-auto max-w-[1285px] py-6 lg:px-11">
       <section className="px-5 lg:px-0">
@@ -9,23 +15,41 @@ const Footer = memo(() => {
         <h1 className=" mt-1.5 py-2.5 font-aguafina text-2xl font-normal">
           The Old Cesena Times
         </h1>
-        {[
-          ["news", "#"],
-          ["opinion", "#"],
-          ["arts", "#"],
-          ["living", "#"],
-          ["listings & more", "#"],
-        ].map((item) => (
-          <div key={item[0]}>
-            <span className="mb-[1px] block h-[1px] w-full bg-gray-200"></span>
-            <a
-              href={item[1]}
-              className="block py-4 font-franklin text-sm font-bold uppercase text-gray-600"
-            >
-              {item[0]}
-            </a>
-          </div>
-        ))}
+        <div className="lg:mb-4 lg:flex lg:justify-between">
+          {Object.entries(footerItems).map(([section, subsection]) => (
+            <div key={section}>
+              <span className="mb-[1px] block h-[1px] w-full bg-gray-200 lg:hidden"></span>
+              <button
+                className={`+ block cursor-pointer py-4 font-franklin text-sm font-bold uppercase  
+                ${activeKey === section ? "text-gray-300" : "text-gray-600"}`}
+                title={section}
+                onClick={() => handleClick(section)}
+              >
+                {section}
+              </button>
+              <nav
+                className={`${
+                  activeKey === section ? "flex" : "hidden"
+                } flex-wrap gap-x-8 py-1 lg:flex lg:flex-col`}
+              >
+                {subsection.map((column, index) => (
+                  <ul className=" flex-1" key={index}>
+                    {column.map((item, index) => (
+                      <li className="mb-4 lg:mb-1" key={index}>
+                        <a
+                          className="font-franklin text-sm font-medium text-gray-600 hover:text-gray-300"
+                          href="#"
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </nav>
+            </div>
+          ))}
+        </div>
       </section>
       <hr className="mb-[1px] h-[1px] w-full bg-gray-200" />
       <section className="px-5 py-3 lg:px-0">
@@ -33,6 +57,9 @@ const Footer = memo(() => {
           © 2024 The Old Cesena Times | by MV
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-2.5">
+          <p className="text-xxs text-center font-franklin font-normal text-gray-500">
+            © 2024 The Old Cesena Times | by MV
+          </p>
           {[
             ["MV", "#"],
             ["Work with me", "#"],
@@ -45,7 +72,7 @@ const Footer = memo(() => {
             <a
               key={item[0]}
               href={item[1]}
-              className="text-xxs font-franklin font-normal text-gray-600"
+              className="text-xxs cursor-pointer font-franklin font-normal text-gray-600"
             >
               {item[0]}
             </a>

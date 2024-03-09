@@ -24,16 +24,21 @@ export const svgPerson = (
     ></path>
   </svg>
 );
-export const svgPlay = (
+export const svgPlayIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="1em"
+    height="1em"
     viewBox="0 0 24 24"
-    fill="none"
   >
-    <circle cx="12" cy="12" r="11.5" stroke="#DFDFDF" />
-    <path d="M17 12L9.5 16.3301V7.66987L17 12Z" fill="#121212" />
+    <path
+      fill="currentColor"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M6.906 4.537A.6.6 0 0 0 6 5.053v13.894a.6.6 0 0 0 .906.516l11.723-6.947a.6.6 0 0 0 0-1.032z"
+    ></path>
   </svg>
 );
 export const svgClose = (
@@ -73,5 +78,37 @@ export const svgSearch = (
       fill="currentColor"
       d="M5 10a5 5 0 1 1 10 0a5 5 0 0 1-10 0m5-7a7 7 0 1 0 4.192 12.606l5.1 5.101a1 1 0 0 0 1.415-1.414l-5.1-5.1A7 7 0 0 0 10 3"
     ></path>
+  </svg>
+);
+export const svgLoading = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill="none"
+      stroke="currentColor"
+      strokeDasharray={15}
+      strokeDashoffset={15}
+      strokeLinecap="round"
+      strokeWidth={2}
+      d="M12 3C16.9706 3 21 7.02944 21 12"
+    >
+      <animate
+        fill="freeze"
+        attributeName="stroke-dashoffset"
+        dur="0.3s"
+        values="15;0"
+      ></animate>
+      <animateTransform
+        attributeName="transform"
+        dur="1.5s"
+        repeatCount="indefinite"
+        type="rotate"
+        values="0 12 12;360 12 12"
+      ></animateTransform>
+    </path>
   </svg>
 );

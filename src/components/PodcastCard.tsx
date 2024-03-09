@@ -1,4 +1,4 @@
-import { svgPlay } from "@/assets/svgImg";
+import { svgPlayIcon } from "@/assets/svgImg";
 type cardProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   news: any;
@@ -6,7 +6,7 @@ type cardProps = {
 const PodcastCard = ({ news }: cardProps) => {
   const { title, url } = news;
   return (
-    <div className="">
+    <a href={url} className="group block cursor-pointer">
       <div className="mb-2 flex gap-x-3.5">
         <img
           className=" h-[90px] w-[90px]"
@@ -22,20 +22,18 @@ const PodcastCard = ({ news }: cardProps) => {
               audio
             </p>
           </div>
-          <a href={url} className="mb-2 block">
-            <h3 className="font-baskerville text-lg font-bold tracking-tight text-black-100">
-              {title}
-            </h3>
-          </a>
+          <h3 className="mb-2 font-baskerville text-lg font-bold tracking-tight text-black-100 group-hover:text-gray-300">
+            {title}
+          </h3>
         </div>
       </div>
-      <a
-        href={url}
-        className="text-xxs flex items-center gap-x-2 font-franklin font-normal uppercase text-gray-300"
-      >
-        {svgPlay}Listen to podcast
-      </a>
-    </div>
+      <div className="text-xxs flex items-center gap-x-2 font-franklin font-normal uppercase text-gray-300">
+        <span className="flex items-center justify-center rounded-full border border-gray-200 py-1 pl-[5px] pr-[3px] text-sm text-black-100 group-hover:bg-gray-200">
+          {svgPlayIcon}
+        </span>
+        Listen to podcast
+      </div>
+    </a>
   );
 };
 
