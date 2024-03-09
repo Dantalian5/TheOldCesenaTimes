@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Dantalian5/TheOldCesenaTimes">
-    <img src="public/assets/favicon/favicon.svg" alt="Logo" width="80" height="auto">
+    <img src="public/assets/logofull.jpg" alt="Logo" width="80" height="auto" >
   </a>
 
 <h3 align="center">The Old Cesena Times | by MV</h3>
