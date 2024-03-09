@@ -5,7 +5,6 @@ import { TypeArticle } from "@/utils/types";
 
 const Main = memo(
   ({ data, filter }: { data: TypeArticle[]; filter: string }) => {
-    console.log("render Main");
     const newsMap: Array<Array<Array<TypeArticle>>> = [];
     const dataMap = filterFn(data, filter);
     const opinionIndex: number = dataMap.findIndex(

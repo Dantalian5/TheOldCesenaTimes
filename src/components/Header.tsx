@@ -12,7 +12,6 @@ const Header = memo(
     setFilter: React.Dispatch<React.SetStateAction<string>>;
     filter: string;
   }) => {
-    console.log("render Header");
     const [showFilter, setShowFilter] = useState<boolean>(false);
     const [filterValue, setFilterValue] = useState<string>(filter);
     useEffect(() => {
@@ -88,9 +87,12 @@ const Header = memo(
             Today's Paper
           </span>
         </p>
-        <p className="border-grey-200 text-xxs text-blue-300 col-span-2 col-start-3 border-y bg-gray-100 px-5 py-3 text-right font-franklin font-normal uppercase sm:col-span-1 sm:col-start-4 sm:bg-white lg:col-span-1 lg:col-start-4 lg:self-center lg:border-0 lg:p-0">
+        <a
+          href="https://linkedin.com/in/marcos-valenzuela-coding"
+          className="border-grey-200 text-xxs text-blue-300 col-span-2 col-start-3 border-y bg-gray-100 px-5 py-3 text-right font-franklin font-normal uppercase sm:col-span-1 sm:col-start-4 sm:bg-white lg:col-span-1 lg:col-start-4 lg:self-center lg:border-0 lg:p-0"
+        >
           follow if you like 👍
-        </p>
+        </a>
       </header>
     );
   },

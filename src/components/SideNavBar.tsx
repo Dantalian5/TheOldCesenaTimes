@@ -76,20 +76,21 @@ const SideNavBar = ({
                     {section}
                   </h4>
                 </li>
-                {subsection.map((column, index) => (
-                  <ul className="flex-auto" key={index}>
-                    {column.map((item, index) => (
-                      <li className="mb-4" key={index}>
-                        <a
-                          className="font-franklin text-lg font-medium"
-                          href=""
-                        >
-                          {item}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
+                {subsection &&
+                  subsection.map((column, index) => (
+                    <ul className="flex-auto" key={index}>
+                      {column.map((item, index) => (
+                        <li className="mb-4" key={index}>
+                          <a
+                            className="font-franklin text-lg font-medium"
+                            href=""
+                          >
+                            {item}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
               </ul>
             ))}
           </li>
@@ -122,20 +123,21 @@ const SideNavBar = ({
                     {section}
                   </h4>
                 </li>
-                {subsection.map((column, index) => (
-                  <ul className="flex-auto" key={index}>
-                    {column.map((item, index) => (
-                      <li className="mb-4" key={index}>
-                        <a
-                          className="font-franklin text-lg font-medium"
-                          href=""
-                        >
-                          {item}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
+                {subsection &&
+                  subsection.map((column, index) => (
+                    <ul className="flex-auto" key={index}>
+                      {column.map((item, index) => (
+                        <li className="mb-4" key={index}>
+                          <a
+                            className="font-franklin text-lg font-medium"
+                            href=""
+                          >
+                            {item}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
               </ul>
             ))}
           </li>

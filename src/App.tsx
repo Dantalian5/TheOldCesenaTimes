@@ -28,7 +28,6 @@ const App = () => {
         .then((response) => {
           if (response.data && response.data.status === "OK") {
             setApiData(response.data.results);
-            console.log("Data loaded: ", response.data.results);
           } else {
             throw new Error("Error loading data");
           }

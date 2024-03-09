@@ -90,6 +90,7 @@ Academic project from the React course at [start2impact](https://www.start2impac
 - HTML5 semantic markup
 - React.js
   - React Router
+  - Axios
 - Vite
 - Tailwind CSS
 - Typescript

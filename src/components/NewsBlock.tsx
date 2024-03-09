@@ -48,13 +48,19 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
             className={`py-4 sm:col-span-4 sm:mr-5 ${side === "right" && "lg:mr-0"}`}
           >
             <a href={data[0].url} className=" group block cursor-pointer">
-              {headerKicker(data[0].kicker, data[0].byline, data[0].section)}
               <div className="flex gap-x-4">
-                <h3
-                  className={`mb-2 font-baskerville font-bold tracking-tight text-black-100 group-hover:text-gray-300 ${index === 0 ? "text-3xl sm:text-lg" : "text-xxl sm:text-lg"} ${side === "right" && "lg:text-base"}`}
-                >
-                  {data[0].title}
-                </h3>
+                <div className="w-full">
+                  {headerKicker(
+                    data[0].kicker,
+                    data[0].byline,
+                    data[0].section,
+                  )}
+                  <h3
+                    className={`mb-2 font-baskerville font-bold tracking-tight text-black-100 group-hover:text-gray-300 ${index === 0 ? "text-3xl sm:text-lg" : "text-xxl sm:text-lg"} ${side === "right" && "lg:text-base"}`}
+                  >
+                    {data[0].title}
+                  </h3>
+                </div>
 
                 <img
                   className={`hidden h-[90px] w-[90px] ${side === "right" && "lg:block"}`}

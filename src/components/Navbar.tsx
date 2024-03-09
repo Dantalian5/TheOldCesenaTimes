@@ -3,8 +3,6 @@ import { svgArrow } from "@/assets/svgImg";
 import { navbarItems } from "@/utils/menuItems";
 
 const Navbar = memo(() => {
-  console.log("render Navbar");
-
   return (
     <nav className="sticky top-0 z-10 mx-auto mb-1  hidden max-w-[1285px] bg-white px-5 lg:block lg:px-11">
       <ul className="flex items-center justify-center border-y border-b-black-100 border-t-gray-200">
@@ -21,7 +19,7 @@ const Navbar = memo(() => {
               {svgArrow}
             </span>
             <div
-              className={`shadow-menu pointer-events-none absolute left-1/2 top-full min-h-20 w-dvw -translate-x-1/2 gap-x-16 bg-white opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 `}
+              className={`shadow-menu pointer-events-none absolute left-1/2 top-full min-h-20 w-dvw -translate-x-1/2 gap-x-16 bg-white opacity-0 transition-opacity duration-500 ease-out group-hover:pointer-events-auto group-hover:opacity-100`}
             >
               <div className="mx-auto flex w-full max-w-[1285px] gap-x-20 bg-white px-5 pb-10 pt-6 lg:px-11">
                 {Object.entries(value).map(([section, subsection]) => (
@@ -30,20 +28,21 @@ const Navbar = memo(() => {
                       {section}
                     </p>
                     <div className="flex gap-x-10">
-                      {subsection.map((column, index) => (
-                        <ul className=" min-w-24" key={index}>
-                          {column.map((item, index) => (
-                            <li className="mb-3 w-full" key={index}>
-                              <a
-                                className="font-franklin text-sm font-medium"
-                                href=""
-                              >
-                                {item}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      ))}
+                      {subsection &&
+                        subsection.map((column, index) => (
+                          <ul className=" min-w-24" key={index}>
+                            {column.map((item, index) => (
+                              <li className="mb-3 w-full" key={index}>
+                                <a
+                                  className="font-franklin text-sm font-medium"
+                                  href=""
+                                >
+                                  {item}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ))}
                     </div>
                   </div>
                 ))}
@@ -74,20 +73,21 @@ const Navbar = memo(() => {
                       {section}
                     </p>
                     <div className="flex gap-x-10">
-                      {subsection.map((column, index) => (
-                        <ul className=" min-w-24" key={index}>
-                          {column.map((item, index) => (
-                            <li className="mb-3 w-full" key={index}>
-                              <a
-                                className="font-franklin text-sm font-medium"
-                                href=""
-                              >
-                                {item}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      ))}
+                      {subsection &&
+                        subsection.map((column, index) => (
+                          <ul className=" min-w-24" key={index}>
+                            {column.map((item, index) => (
+                              <li className="mb-3 w-full" key={index}>
+                                <a
+                                  className="font-franklin text-sm font-medium"
+                                  href=""
+                                >
+                                  {item}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ))}
                     </div>
                   </div>
                 ))}

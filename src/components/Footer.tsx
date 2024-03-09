@@ -1,7 +1,6 @@
 import { memo, useState } from "react";
 import { footerItems } from "@/utils/menuItems";
 const Footer = memo(() => {
-  console.log("render Footer");
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const handleClick = (key: string | null) => {
     setActiveKey(activeKey === key ? null : key);
@@ -37,7 +36,7 @@ const Footer = memo(() => {
                     {column.map((item, index) => (
                       <li className="mb-4 lg:mb-1" key={index}>
                         <a
-                          className="font-franklin text-sm font-medium text-gray-600 hover:text-gray-300"
+                          className="font-franklin text-sm font-medium text-gray-600 underline-offset-2  hover:underline"
                           href="#"
                         >
                           {item}
@@ -53,11 +52,8 @@ const Footer = memo(() => {
       </section>
       <hr className="mb-[1px] h-[1px] w-full bg-gray-200" />
       <section className="px-5 py-3 lg:px-0">
-        <p className="text-xxs mb-6 text-center font-franklin font-normal text-gray-500">
-          © 2024 The Old Cesena Times | by MV
-        </p>
         <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-2.5">
-          <p className="text-xxs text-center font-franklin font-normal text-gray-500">
+          <p className="text-xxs mb-6 w-full text-center font-franklin font-normal text-gray-500 lg:mb-0 lg:w-auto">
             © 2024 The Old Cesena Times | by MV
           </p>
           {[

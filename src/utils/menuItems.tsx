@@ -1,4 +1,22 @@
-export const navbarItems = [
+type BaseSection = string[][];
+
+interface BaseCategory {
+  [key: string]: BaseSection | undefined;
+}
+
+export type FooterItemsType = {
+  [category: string]: BaseSection;
+};
+
+type NavbarCategory = BaseCategory & {
+  sections?: BaseSection;
+};
+
+export type NavbarItemsType = {
+  [key: string]: NavbarCategory;
+}[];
+
+export const navbarItems: NavbarItemsType = [
   {
     "U.S.": {
       sections: [
@@ -138,7 +156,7 @@ export const navbarItems = [
     },
   },
 ];
-export const footerItems = {
+export const footerItems: FooterItemsType = {
   news: [
     [
       "Home Page",
