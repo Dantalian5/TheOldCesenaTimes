@@ -19,11 +19,12 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![MIT License][license-shield]][license-url] -->
+
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -79,7 +80,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](public/assets/screenshot.png)
 
 Academic project from the React course at [start2impact](https://www.start2impact.it). The Old Cesena Times is a clone of the renowned newspaper [The New York Times](https://www.nytimes.com), where, always respecting the copyright and licenses of the latter, the goal is to recreate as closely as possible the features and functionalities of the original, while efficiently utilizing its provided [API](https://developer.nytimes.com/apis).
 
@@ -219,7 +220,7 @@ Project Link: [https://github.com/Dantalian5/TheOldCesenaTimes](https://github.c
 [issues-shield]: https://img.shields.io/github/issues/Dantalian5/TheOldCesenaTimes.svg?style=for-the-badge
 [issues-url]: https://github.com/Dantalian5/TheOldCesenaTimes/issues
 [license-shield]: https://img.shields.io/github/license/Dantalian5/TheOldCesenaTimes.svg?style=for-the-badge
-[license-url]: https://github.com/Dantalian5/TheOldCesenaTimes/blob/master/LICENSE.txt
+[license-url]: https://github.com/Dantalian5/TheOldCesenaTimes/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/marcos-valenzuela-coding
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: public/assets/screenshot.png
