@@ -25,6 +25,7 @@ const Header = memo(
           <button
             className="cursor-pointer rounded px-5 py-2 text-xl text-black-100 hover:bg-gray-100 lg:p-2"
             onClick={() => setNavbar((prev: boolean) => !prev)}
+            title="Menu"
           >
             {svgMenu}
           </button>

@@ -22,9 +22,9 @@ const PodcastCard = ({ news }: cardProps) => {
               audio
             </p>
           </div>
-          <h3 className="mb-2 font-baskerville text-lg font-bold tracking-tight text-black-100 group-hover:text-gray-300">
+          <h2 className="mb-2 font-baskerville text-lg font-bold tracking-tight text-black-100 group-hover:text-gray-300">
             {title}
-          </h3>
+          </h2>
         </div>
       </div>
       <div className="text-xxs flex items-center gap-x-2 font-franklin font-normal uppercase text-gray-300">

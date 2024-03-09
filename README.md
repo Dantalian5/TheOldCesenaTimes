@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Dantalian5/TheOldCesenaTimes">
-    <img src="public/assets/LogoFull.svg" alt="Logo" width="80" height="auto">
+    <img src="public/assets/favicon/favicon.svg" alt="Logo" width="80" height="auto">
   </a>
 
 <h3 align="center">The Old Cesena Times | by MV</h3>
@@ -41,7 +41,7 @@
     <a href="https://github.com/Dantalian5/TheOldCesenaTimes"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Dantalian5/TheOldCesenaTimes">Live Site</a>
+    <a href="https://the-old-cesena-times.vercel.app">Live Site</a>
     ·
     <a href="https://github.com/Dantalian5/TheOldCesenaTimes/issues">Report Bug</a>
     ·

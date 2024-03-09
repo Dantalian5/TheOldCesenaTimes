@@ -11,9 +11,9 @@ const Footer = memo(() => {
       <section className="px-5 lg:px-0">
         <hr className="mb-[1px] h-0.5 w-full bg-gray-200" />
         <span className="mb-[1px] block h-[1px] w-full bg-gray-200"></span>
-        <h1 className=" mt-1.5 py-2.5 font-aguafina text-2xl font-normal">
+        <h3 className=" mt-1.5 py-2.5 font-aguafina text-2xl font-normal">
           The Old Cesena Times
-        </h1>
+        </h3>
         <div className="lg:mb-4 lg:flex lg:justify-between">
           {Object.entries(footerItems).map(([section, subsection]) => (
             <div key={section}>
@@ -53,7 +53,7 @@ const Footer = memo(() => {
       <hr className="mb-[1px] h-[1px] w-full bg-gray-200" />
       <section className="px-5 py-3 lg:px-0">
         <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-2.5">
-          <p className="text-xxs mb-6 w-full text-center font-franklin font-normal text-gray-500 lg:mb-0 lg:w-auto">
+          <p className="text-xxs mb-2 w-full text-center font-franklin font-normal text-gray-500 lg:mb-0 lg:w-auto">
             © 2024 The Old Cesena Times | by MV
           </p>
           {[

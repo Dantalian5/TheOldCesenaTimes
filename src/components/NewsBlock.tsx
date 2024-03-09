@@ -55,11 +55,11 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
                     data[0].byline,
                     data[0].section,
                   )}
-                  <h3
+                  <h2
                     className={`mb-2 font-baskerville font-bold tracking-tight text-black-100 group-hover:text-gray-300 ${index === 0 ? "text-3xl sm:text-lg" : "text-xxl sm:text-lg"} ${side === "right" && "lg:text-base"}`}
                   >
                     {data[0].title}
-                  </h3>
+                  </h2>
                 </div>
 
                 <img
@@ -101,11 +101,11 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
           >
             <a href={data[1].url} className=" group block cursor-pointer">
               {headerKicker(data[1].kicker, data[1].byline, data[1].section)}
-              <h3
+              <h2
                 className={`mb-2 font-baskerville text-lg font-bold tracking-tight text-black-100 group-hover:text-gray-300 sm:text-base`}
               >
                 {data[1].title}
-              </h3>
+              </h2>
               <p
                 className={`${side === "right" && "lg:hidden"} font-pt text-base font-normal text-gray-400`}
               >
@@ -121,11 +121,11 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
           >
             <a href={data[2].url} className=" group block cursor-pointer">
               {headerKicker(data[2].kicker, data[2].byline, data[2].section)}
-              <h3
+              <h2
                 className={`mb-2 font-baskerville text-lg font-bold tracking-tight text-black-100 group-hover:text-gray-300 sm:text-base`}
               >
                 {data[2].title}
-              </h3>
+              </h2>
             </a>
           </div>
         )}
@@ -137,11 +137,11 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
             >
               <a href={data[2].url} className=" group block cursor-pointer">
                 {headerKicker(data[3].kicker, data[3].byline, data[3].section)}
-                <h3
+                <h2
                   className={`mb-2 font-baskerville text-lg font-bold tracking-tight text-black-100 group-hover:text-gray-300 sm:text-base`}
                 >
                   {data[3].title}
-                </h3>
+                </h2>
               </a>
             </div>
           </div>

@@ -50,7 +50,7 @@ const Navbar = memo(() => {
             </div>
           </li>
         ))}
-        <span className="mx-3 block h-4 w-[1px] bg-gray-200"></span>
+        <li className="mx-3 block h-4 w-[1px] bg-gray-200"></li>
         {Object.entries(navbarItems[1]).map(([key, value]) => (
           <li
             className="group flex items-center px-3 py-5 font-franklin text-xs font-medium text-black-100"
