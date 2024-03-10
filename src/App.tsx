@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ErrorBoundary } from "react-error-boundary";
 import Navbar from "@/components/Navbar";
 import SideNavBar from "@/components/SideNavBar";
 import Header from "@/components/Header";
@@ -68,7 +69,15 @@ const App = () => {
             minutes.
           </p>
         ) : (
-          <Main data={apiData} filter={filter} />
+          <ErrorBoundary
+            fallback={
+              <p className="mx-auto max-w-[1285px] px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
+                Ups...something went wrong, please try again later
+              </p>
+            }
+          >
+            <Main data={apiData} filter={filter} />
+          </ErrorBoundary>
         )}
         <Footer />
       </div>
