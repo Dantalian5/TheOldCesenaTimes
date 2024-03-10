@@ -57,13 +57,13 @@ const Footer = memo(() => {
             © 2024 The Old Cesena Times | by MV
           </p>
           {[
-            ["MV", "#"],
-            ["Work with me", "#"],
+            ["MV", "https://marcosvalenzuela.netlify.app"],
+            ["Work with me", "https://marcosvalenzuela.netlify.app"],
             ["Advertise", "#"],
-            ["Contact Me", "#"],
+            ["Contact Me", "https://marcosvalenzuela.netlify.app"],
             ["Accesibility", "#"],
             ["Privacy Policy", "#"],
-            ["start2impact University", "#"],
+            ["start2impact University", "https://www.start2impact.it"],
           ].map((item) => (
             <a
               key={item[0]}
