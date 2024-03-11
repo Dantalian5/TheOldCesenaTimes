@@ -34,10 +34,7 @@ const Navbar = memo(() => {
                           <ul className=" min-w-24" key={index}>
                             {column.map((item, index) => (
                               <li className="mb-3 w-full" key={index}>
-                                <Link
-                                  to={`/section/${item[1]}`}
-                                  state={item[1]}
-                                >
+                                <Link to={`/section`} state={item[1]}>
                                   <span className="font-franklin text-sm font-medium">
                                     {item[0]}
                                   </span>
