@@ -21,7 +21,7 @@ export const navbarItems: NavbarItemsType = [
     "U.S.": {
       sections: [
         [
-          "U.S.",
+          ["U.S.", "us"],
           "Politics",
           "New York",
           "California",

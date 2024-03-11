@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 import { svgArrow } from "@/assets/svgImg";
 import { navbarItems } from "@/utils/menuItems";
 
@@ -33,12 +34,14 @@ const Navbar = memo(() => {
                           <ul className=" min-w-24" key={index}>
                             {column.map((item, index) => (
                               <li className="mb-3 w-full" key={index}>
-                                <a
-                                  className="font-franklin text-sm font-medium"
-                                  href=""
+                                <Link
+                                  to={`/section/${item[1]}`}
+                                  state={item[1]}
                                 >
-                                  {item}
-                                </a>
+                                  <span className="font-franklin text-sm font-medium">
+                                    {item[0]}
+                                  </span>
+                                </Link>
                               </li>
                             ))}
                           </ul>

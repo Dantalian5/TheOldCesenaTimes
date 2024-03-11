@@ -147,6 +147,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ### S2I tasks:
 
 - [x] Replica of the NYT homepage.
+- [ ] Replica of the NYT section pages.
 - [x] Fetch news from the API and display them on the homepage.
 - [x] Simple and user-friendly UI and UX. Organized and understandable app structure.
 - [x] Responsive design.
