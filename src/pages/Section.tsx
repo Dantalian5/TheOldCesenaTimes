@@ -3,8 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 // import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Header from "@/components/Header";
-import Navbar from "@/components/Navbar";
-import NewsGrid from "@/components/NewsGrid";
+import NewsColumn from "@/components/NewsColumn";
 import { svgLoading } from "@/assets/svgImg";
 
 const DisplayNews = ({ filter, url }) => {
@@ -34,7 +33,7 @@ const DisplayNews = ({ filter, url }) => {
         </p>
       }
     >
-      <NewsGrid data={data.results} filter={filter} />
+      <NewsColumn data={data.results} />
     </ErrorBoundary>
   );
 };
@@ -50,7 +49,6 @@ const Section = () => {
   return (
     <div>
       <Header />
-      <Navbar />
       <DisplayNews filter={filter} url={nytUrl} />
     </div>
   );
