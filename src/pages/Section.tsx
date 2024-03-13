@@ -1,8 +1,8 @@
 import { ErrorBoundary } from "react-error-boundary";
 import { useQuery } from "@tanstack/react-query";
+import { Link, NavLink } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 import axios from "axios";
-import Header from "@/components/Header";
 import NewsColumn from "@/components/NewsColumn";
 import { svgLoading } from "@/assets/svgImg";
 
@@ -48,7 +48,18 @@ const Section = () => {
   const filter = "";
   return (
     <div>
-      <Header />
+      <header className="flex justify-center border-b border-b-gray-200 ">
+        <NavLink to="/">
+          <h1 className="mt-4 cursor-pointer font-aguafina text-2xl font-normal sm:text-3xl">
+            The Old Cesena Times
+          </h1>
+        </NavLink>
+      </header>
+      <div className="mx-auto mb-4 mt-8 max-w-[1285px] px-5 lg:px-11">
+        <p className=" font-franklin text-3xl font-bold uppercase text-black-100">
+          {state}
+        </p>
+      </div>
       <DisplayNews filter={filter} url={nytUrl} />
     </div>
   );

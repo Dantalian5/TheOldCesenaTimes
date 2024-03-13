@@ -43,7 +43,7 @@ const TopMenu = () => {
                   value={filterValue}
                   onChange={(e) => setFilterValue(e.target.value)}
                 />
-                <button className=" bg-blue-100 min-w-9 rounded p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
+                <button className=" min-w-9 rounded bg-blue-100 p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
                   go
                 </button>
               </form>
@@ -57,7 +57,7 @@ const TopMenu = () => {
             console.log("click on sign in");
           }}
         >
-          <span className="bg-blue-200 text-xxs border-blue-300 hover:bg-blue-300 hidden rounded border px-4 py-2 font-franklin font-bold uppercase text-white transition-colors duration-500 lg:block">
+          <span className="hidden rounded border border-blue-300 bg-blue-200 px-4 py-2 font-franklin text-xxs font-bold uppercase text-white transition-colors duration-500 hover:bg-blue-300 lg:block">
             Log in
           </span>
           <span className="text-2xl text-black-100 lg:hidden">{svgPerson}</span>
@@ -68,3 +68,5 @@ const TopMenu = () => {
 };
 
 export default TopMenu;
+
+// todo reemplazar para poner botones independientes a mbos lados: div tapa el header
