@@ -28,10 +28,25 @@ const filterFn = (data: TypeArticle[], filter: string) => {
     const filteredData = data.filter(
       (item) =>
         item.title.toLowerCase().includes(filter.toLowerCase()) ||
-        item.abstract.toLowerCase().includes(filter.toLowerCase()),
+        item.abstract.toLowerCase().includes(filter.toLowerCase()) ||
+        item.byline.toLowerCase().includes(filter.toLowerCase()),
     );
     return filteredData;
   }
+};
+const markedFn = (element, filter) => {
+  return element.split(new RegExp(`(${filter})`, "gi")).map((part, index) => (
+    <span
+      key={index}
+      style={
+        part.toLowerCase() === filter.toLowerCase()
+          ? { backgroundColor: "#567B94", color: "#ffffff", fontWeight: "700" }
+          : {}
+      }
+    >
+      {part}
+    </span>
+  ));
 };
 const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
   const [activeTab, setActiveTab] = useState<"search" | "latest">("latest");
@@ -39,15 +54,17 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
   const [opinionatedData, setOpinionatedData] = useState<TypeArticle[]>(data);
 
   useEffect(() => {
-    setOpinionatedData(filterFn(data, filterValue));
-  }, [data, filterValue]);
+    setOpinionatedData(
+      filterFn(data, activeTab === "search" ? filterValue : ""),
+    );
+  }, [data, filterValue, activeTab]);
 
   return (
     <main className="mx-auto max-w-[1285px] px-5 lg:px-11">
       <div className="overflow-hidden pb-[0.5px] pt-2">
         <ul className="relative flex items-center border-b border-t-2 border-b-gray-200 border-t-black-100 px-4">
           <li
-            className={` relative px-11 py-2 text-gray-300 ${activeTab === "latest" && "text-gray-700 before:absolute before:-inset-2 before:z-10 before:rounded before:border-x before:border-y before:border-x-gray-200 before:border-b-white before:border-t-gray-200 before:bg-white before:content-['']"}`}
+            className={` relative cursor-pointer px-4 py-2 text-gray-300 sm:px-11 ${activeTab === "latest" && "text-gray-700 before:absolute before:-inset-2 before:z-10 before:rounded before:border-x before:border-y before:border-x-gray-200 before:border-b-white before:border-t-gray-200 before:bg-white before:content-['']"}`}
             onClick={() => setActiveTab("latest")}
           >
             <p className=" relative z-20 flex items-center font-franklin text-base font-bold">
@@ -55,7 +72,7 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
             </p>
           </li>
           <li
-            className={` relative px-11 py-2 text-gray-300 ${activeTab === "search" && " text-gray-700 is-active group before:absolute before:-inset-2 before:z-10 before:rounded before:border-x before:border-y before:border-x-gray-200 before:border-b-white before:border-t-gray-200 before:bg-white before:content-['']"} `}
+            className={` relative cursor-pointer px-4 py-2 text-gray-300 sm:px-11 ${activeTab === "search" && " is-active group text-gray-700 before:absolute before:-inset-2 before:z-10 before:rounded before:border-x before:border-y before:border-x-gray-200 before:border-b-white before:border-t-gray-200 before:bg-white before:content-['']"} `}
             onClick={() => setActiveTab("search")}
           >
             <form
@@ -68,11 +85,12 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
               <input
                 type="text"
                 placeholder="Search"
-                className="block min-w-fit font-franklin text-base font-bold text-gray-300 outline-none placeholder:text-gray-300 group-[.is-active]:placeholder:text-gray-200"
+                className="block max-w-[20vw] cursor-pointer font-franklin text-base font-bold text-gray-300 outline-none placeholder:text-gray-300 group-[.is-active]:cursor-text group-[.is-active]:placeholder:text-gray-200 sm:max-w-[40vw] "
                 value={activeTab === "search" ? filterValue : ""}
                 onChange={(e) => setFilterValue(e.target.value)}
+                size={filterValue.length > 6 ? filterValue.length : 6}
               />
-              {filterValue !== "" && (
+              {filterValue !== "" && activeTab === "search" && (
                 <span
                   className="cursor-pointer text-base"
                   onClick={() => setFilterValue("")}
@@ -85,7 +103,13 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
         </ul>
       </div>
 
-      <section className="py-8">
+      {filterValue !== "" && activeTab === "search" && (
+        <p className="mt-5 font-franklin text-lg font-normal text-black-100">
+          Found <span className="font-bold">{opinionatedData.length}</span>{" "}
+          results for <span className="font-bold">{filterValue}</span>
+        </p>
+      )}
+      <section className="pb-8 pt-5">
         <ol className="lg:max-w-[70%]">
           {opinionatedData.map((item, index) => (
             <li
@@ -105,20 +129,26 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
                 <h2
                   className={`mb-2 font-baskerville text-sm font-normal text-black-100 sm:text-xl`}
                 >
-                  {item.title}
+                  {activeTab === "latest"
+                    ? item.title
+                    : markedFn(item.title, filterValue)}
                 </h2>
                 <p
-                  className={`text-gray-700 font-pt text-xs font-normal sm:text-sm`}
+                  className={`font-pt text-xs font-normal text-gray-700 sm:text-sm`}
                 >
-                  {item.abstract}
+                  {activeTab === "latest"
+                    ? item.abstract
+                    : markedFn(item.abstract, filterValue)}
                 </p>
                 <p
-                  className={`text-xxs hidden pb-1 pt-3 font-franklin font-normal text-gray-300 sm:block `}
+                  className={`hidden pb-1 pt-3 font-franklin text-xxs font-normal text-gray-300 sm:block `}
                 >
-                  {byFn(item.byline)}
+                  {activeTab === "latest"
+                    ? byFn(item.byline)
+                    : markedFn(byFn(item.byline), filterValue)}
                 </p>
               </article>
-              <span className="text-xxs block min-w-32 font-franklin font-normal text-gray-300 sm:py-2">
+              <span className="block min-w-32 font-franklin text-xxs font-normal text-gray-300 sm:py-2">
                 {dateFn(item.updated_date)}
               </span>
             </li>
