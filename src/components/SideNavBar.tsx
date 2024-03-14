@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { svgArrow, svgClose } from "@/assets/svgImg";
 import { navbarItems } from "@/utils/menuItems";
 
@@ -18,7 +19,7 @@ const SideNavBar = ({
     setActiveKey(activeKey === key ? null : key);
   };
   return (
-    <nav className=" lg:shadow-sidemenu absolute left-0 top-0 z-20 min-h-full w-full bg-white pb-6 pt-0 lg:min-h-0 lg:w-80">
+    <nav className=" absolute left-0 top-0 z-20 min-h-full w-full bg-white pb-6 pt-0 lg:min-h-0 lg:w-80 lg:shadow-sidemenu">
       <div className=" sticky top-0 z-10 bg-white p-6">
         <button
           className="mb-9 cursor-pointer text-3xl text-black-100"
@@ -43,103 +44,83 @@ const SideNavBar = ({
             value={filterValue}
             onChange={(e) => setFilterValue(e.target.value)}
           />
-          <button className=" bg-blue-100 min-w-9 rounded p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
+          <button className=" min-w-9 rounded bg-blue-100 p-2.5 font-franklin text-xs font-bold uppercase text-white shadow-btn">
             go
           </button>
         </form>
       </div>
       <ul className="px-6">
-        {Object.entries(navbarItems[0]).map(([key, value]) => (
+        {Object.entries(navbarItems[0]).map(([section, sectionInfo]) => (
           <li
             className="w-full border-b border-gray-200 last:border-0"
-            key={key}
+            key={section}
           >
-            <button
-              className="flex w-full items-center justify-between py-6 font-franklin text-lg font-semibold tracking-tight"
-              onClick={() => handleClick(key)}
-            >
-              {key}
-              <span
-                className={`${activeKey === key ? "rotate-180" : "rotate-0"} text-2xl`}
+            <div className="flex w-full items-center justify-between py-6  ">
+              <Link
+                to={`/section/${sectionInfo.section}`}
+                state={{
+                  url: sectionInfo.section,
+                  section: section,
+                  subsection: "",
+                }}
               >
-                {svgArrow}
-              </span>
-            </button>
-            {Object.entries(value).map(([section, subsection]) => (
-              <ul
-                className={`${activeKey === key ? "block" : "hidden"}
+                <span className="font-franklin text-lg font-semibold tracking-tight">
+                  {section}
+                </span>
+              </Link>
+              <button
+                className={`${activeKey === section && "rotate"} group flex w-full flex-grow items-center justify-end`}
+                onClick={() => handleClick(section)}
+              >
+                <span className=" w-fit text-2xl group-[.rotate]:rotate-180">
+                  {svgArrow}
+                </span>
+              </button>
+            </div>
+            {Object.entries(sectionInfo.subsection).map(
+              ([subsection, subsectionList], index) => (
+                <ul
+                  className={`${activeKey === section ? "block" : "hidden"}
                         flex flex-wrap gap-x-8 gap-y-4 py-3`}
-                key={section}
-              >
-                <li className="w-full">
-                  <p className=" font-franklin text-sm font-medium uppercase text-gray-300">
-                    {section}
-                  </p>
-                </li>
-                {subsection &&
-                  subsection.map((column, index) => (
-                    <ul className="flex-auto" key={index}>
-                      {column.map((item, index) => (
-                        <li className="mb-4" key={index}>
-                          <a
-                            className="font-franklin text-lg font-medium"
-                            href=""
-                          >
-                            {item}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-              </ul>
-            ))}
-          </li>
-        ))}
-        <hr className="w-full border border-black-100" />
-        {Object.entries(navbarItems[1]).map(([key, value]) => (
-          <li
-            className="w-full border-b border-gray-200 last:border-0"
-            key={key}
-          >
-            <button
-              className="flex w-full items-center justify-between py-6 font-franklin text-lg font-semibold tracking-tight"
-              onClick={() => handleClick(key)}
-            >
-              {key}
-              <span
-                className={`${activeKey === key ? "rotate-180" : "rotate-0"} text-2xl`}
-              >
-                {svgArrow}
-              </span>
-            </button>
-            {Object.entries(value).map(([section, subsection]) => (
-              <ul
-                className={`${activeKey === key ? "block" : "hidden"}
-                        flex flex-wrap gap-x-8 gap-y-4 py-3`}
-                key={section}
-              >
-                <li className="w-full">
-                  <p className=" font-franklin text-sm font-medium uppercase text-gray-300">
-                    {section}
-                  </p>
-                </li>
-                {subsection &&
-                  subsection.map((column, index) => (
-                    <ul className="flex-auto" key={index}>
-                      {column.map((item, index) => (
-                        <li className="mb-4" key={index}>
-                          <a
-                            className="font-franklin text-lg font-medium"
-                            href=""
-                          >
-                            {item}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-              </ul>
-            ))}
+                  key={index}
+                >
+                  <li className="w-full">
+                    <p className=" font-franklin text-sm font-medium uppercase text-gray-300">
+                      {subsection}
+                    </p>
+                  </li>
+                  {subsectionList &&
+                    subsectionList.map((column, index) => (
+                      <ul className="flex-auto" key={index}>
+                        {column.map((item, index) => (
+                          <li className="mb-4" key={index}>
+                            <Link
+                              to={`/section/${
+                                item[1] === ""
+                                  ? sectionInfo.section + "-" + item[2]
+                                  : item[1]
+                              }`}
+                              state={{
+                                url:
+                                  item[1] === ""
+                                    ? sectionInfo.section
+                                    : item[1],
+                                section: item[0],
+                                subsection: item[2],
+                                parent: section,
+                              }}
+                            >
+                              <span className="font-franklin text-base font-medium">
+                                {item[0]}
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ))}
+                </ul>
+              ),
+            )}
           </li>
         ))}
       </ul>

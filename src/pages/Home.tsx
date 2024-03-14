@@ -46,7 +46,7 @@ const DisplayNews = ({ filter }) => {
 };
 const Home = memo(() => {
   const filter = "";
-
+  console.log("render home");
   return (
     <div>
       <Header />

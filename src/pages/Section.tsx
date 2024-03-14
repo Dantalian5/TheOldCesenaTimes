@@ -49,6 +49,7 @@ const Section = memo(() => {
     `/svc/topstories/v2/${state.url}.json?api-key=${String(import.meta.env.VITE_API_KEY)}`,
     "https://api.nytimes.com",
   );
+  console.log("render sections");
   return (
     <div>
       <header className="flex justify-center border-b border-b-gray-200 ">
@@ -59,8 +60,13 @@ const Section = memo(() => {
         </Link>
       </header>
       <div className="mx-auto mb-4 mt-8 max-w-[1285px] px-5 lg:px-11">
-        <p className=" font-baskerville text-3xl font-bold  text-black-100">
-          {state.name}
+        {state.subsection !== "" && (
+          <span className=" mb-2 font-baskerville text-base font-bold text-black-100">
+            {state.parent}
+          </span>
+        )}
+        <p className=" font-baskerville text-3xl font-bold text-black-100">
+          {state.section}
         </p>
       </div>
       <DisplayNews filter={state.subsection} url={nytUrl} />

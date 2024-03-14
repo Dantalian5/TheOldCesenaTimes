@@ -11,7 +11,7 @@ const navLineFn = (list: NavbarItemsType) => {
     >
       <Link
         to={`/section/${sectionInfo.section}`}
-        state={{ url: sectionInfo.section, name: section, subsection: "" }}
+        state={{ url: sectionInfo.section, section: section, subsection: "" }}
       >
         <span className="cursor-pointer border-b-2 border-white group-hover:border-black-100">
           {section}
@@ -44,13 +44,13 @@ const navLineFn = (list: NavbarItemsType) => {
                                   : item[1]
                               }`}
                               state={{
-                                name: item[0],
                                 url:
                                   item[1] === ""
                                     ? sectionInfo.section
                                     : item[1],
-
+                                section: item[0],
                                 subsection: item[2],
+                                parent: section,
                               }}
                             >
                               <span className="font-franklin text-sm font-medium">

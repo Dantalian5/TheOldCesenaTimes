@@ -1,17 +1,33 @@
 import { useState } from "react";
+import SideNavBar from "./SideNavBar";
 import { svgMenu, svgPerson, svgSearch } from "@/assets/svgImg";
-const TopMenu = () => {
+
+const TopMenu = ({
+  showMenu,
+  setShowMenu,
+}: {
+  showMenu: boolean;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [filterValue, setFilterValue] = useState<string>("");
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  //   const [filter, setFilter] = useState<string>("");
   //   useEffect(() => {
   //     setFilterValue(filter);
   //   }, [filter]);
   return (
     <div className="absolute left-1/2 top-0 z-50 mx-auto h-0 w-full max-w-[1285px] -translate-x-1/2">
+      {showMenu && (
+        <SideNavBar
+          setNavbar={setShowMenu}
+          setFilter={setFilterValue}
+          filter={filterValue}
+        />
+      )}
       <div className="absolute left-0 top-2 flex gap-x-2 lg:left-11 lg:top-1">
         <button
           className="flex cursor-pointer items-center justify-between rounded px-5 py-2 text-xl text-black-100 hover:bg-gray-100 lg:p-2"
-          onClick={() => console.log("click on menu")}
+          onClick={() => setShowMenu((prev: boolean) => !prev)}
           title="Menu"
         >
           {svgMenu}
