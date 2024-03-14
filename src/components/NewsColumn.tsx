@@ -111,48 +111,53 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
       )}
       <section className="pb-8 pt-5">
         <ol className="lg:max-w-[70%]">
-          {opinionatedData.map((item, index) => (
-            <li
-              key={index}
-              className=" flex flex-col justify-end border-t border-gray-200 py-5 align-top sm:flex-row-reverse"
-            >
-              <article className="mb-1 min-h-32 flex-1">
-                {item.multimedia && (
-                  <div className={`float-right mb-5 ml-3 w-[150px] sm:ml-10`}>
-                    <img
-                      className={` w-full`}
-                      src={item.multimedia[1].url}
-                      alt={item.multimedia[1].caption}
-                    />
-                  </div>
-                )}
-                <h2
-                  className={`mb-2 font-baskerville text-sm font-normal text-black-100 sm:text-xl`}
+          {opinionatedData.map(
+            (item, index) =>
+              item.title !== "" && (
+                <li
+                  key={index}
+                  className=" flex flex-col justify-end border-t border-gray-200 py-5 align-top sm:flex-row-reverse"
                 >
-                  {activeTab === "latest"
-                    ? item.title
-                    : markedFn(item.title, filterValue)}
-                </h2>
-                <p
-                  className={`font-pt text-xs font-normal text-gray-700 sm:text-sm`}
-                >
-                  {activeTab === "latest"
-                    ? item.abstract
-                    : markedFn(item.abstract, filterValue)}
-                </p>
-                <p
-                  className={`hidden pb-1 pt-3 font-franklin text-xxs font-normal text-gray-300 sm:block `}
-                >
-                  {activeTab === "latest"
-                    ? byFn(item.byline)
-                    : markedFn(byFn(item.byline), filterValue)}
-                </p>
-              </article>
-              <span className="block min-w-32 font-franklin text-xxs font-normal text-gray-300 sm:py-2">
-                {dateFn(item.updated_date)}
-              </span>
-            </li>
-          ))}
+                  <article className="mb-1 min-h-32 flex-1">
+                    {item.multimedia && (
+                      <div
+                        className={`float-right mb-5 ml-3 w-[150px] sm:ml-10`}
+                      >
+                        <img
+                          className={` w-full`}
+                          src={item.multimedia[1].url}
+                          alt={item.multimedia[1].caption}
+                        />
+                      </div>
+                    )}
+                    <h2
+                      className={`mb-2 font-baskerville text-sm font-normal text-black-100 sm:text-xl`}
+                    >
+                      {activeTab === "latest"
+                        ? item.title
+                        : markedFn(item.title, filterValue)}
+                    </h2>
+                    <p
+                      className={`font-pt text-xs font-normal text-gray-700 sm:text-sm`}
+                    >
+                      {activeTab === "latest"
+                        ? item.abstract
+                        : markedFn(item.abstract, filterValue)}
+                    </p>
+                    <p
+                      className={`hidden pb-1 pt-3 font-franklin text-xxs font-normal text-gray-300 sm:block `}
+                    >
+                      {activeTab === "latest"
+                        ? byFn(item.byline)
+                        : markedFn(byFn(item.byline), filterValue)}
+                    </p>
+                  </article>
+                  <span className="block min-w-32 font-franklin text-xxs font-normal text-gray-300 sm:py-2">
+                    {dateFn(item.updated_date)}
+                  </span>
+                </li>
+              ),
+          )}
         </ol>
       </section>
     </main>

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -43,7 +44,7 @@ const DisplayNews = ({ filter }) => {
     </ErrorBoundary>
   );
 };
-const Home = () => {
+const Home = memo(() => {
   const filter = "";
 
   return (
@@ -53,6 +54,6 @@ const Home = () => {
       <DisplayNews filter={filter} />
     </div>
   );
-};
+});
 
 export default Home;
