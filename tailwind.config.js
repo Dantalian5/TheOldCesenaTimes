@@ -9,6 +9,7 @@ export default {
       pt: ["PT Serif", "serif"],
     },
     colors: {
+      transparent: "transparent",
       white: "#ffffff",
       black: {
         100: "#121212",

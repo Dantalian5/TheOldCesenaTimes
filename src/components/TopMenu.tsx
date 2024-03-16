@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { useNavigate } from "react-router-dom";
 import { setFilter } from "@/redux/filterSlice";
 import { toogleNav } from "@/redux/navbarSlice";
 import SideNavBar from "./SideNavBar";
@@ -10,6 +11,7 @@ const TopMenu = () => {
   const filter = useAppSelector((state) => state.filter.value);
   const showNavbar = useAppSelector((state) => state.navbar.show);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [filterValue, setFilterValue] = useState<string>(filter);
   const [showFilter, setShowFilter] = useState<boolean>(false);
 
@@ -17,6 +19,7 @@ const TopMenu = () => {
     e.preventDefault();
     dispatch(setFilter(filterValue));
     setShowFilter(false);
+    navigate(`/search/filter?=${filterValue}`);
   };
   useEffect(() => {
     setFilterValue(filter);

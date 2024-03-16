@@ -1,12 +1,14 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { useQuery } from "@tanstack/react-query";
-import { svgLoading } from "@/assets/svgImg";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { setFilter } from "@/redux/filterSlice";
+import { svgLoading, svgSearch } from "@/assets/svgImg";
 import { apiSearch } from "@/api/apiFetch";
 import { fnSetDate } from "@/utils";
 
 const NewsSearch = (data) => {
-  console.log(data.data);
   return (
     <section className="pb-8">
       <ol className="mx-auto px-6 lg:max-w-[840px]">
@@ -98,6 +100,16 @@ const NewsDisplay = ({ filter }) => {
 
 const Search = () => {
   console.log("render Search");
+  const dispatch = useAppDispatch();
+  const filter = useAppSelector((state) => state.filter.value);
+  const [filterValue, setFilterValue] = useState<string>(filter);
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(setFilter(filterValue));
+  };
+  useEffect(() => {
+    setFilterValue(filter);
+  }, [filter]);
 
   return (
     <div>
@@ -109,7 +121,29 @@ const Search = () => {
         </Link>
       </header>
       <div className="mx-auto mb-4 mt-8 max-w-[1285px] px-5 lg:px-11"></div>
-      <NewsDisplay filter={"trump"} />
+      <section className=" bg-gray-100 py-7">
+        <div className="mx-auto px-6 lg:max-w-[840px]">
+          <p className="mb-1 font-franklin text-xs font-normal text-gray-500">
+            Showing results for:
+          </p>
+          <form
+            onSubmit={onFormSubmit}
+            className="flex w-full items-center border-b border-b-gray-200 "
+          >
+            <input
+              type="text "
+              className="bg-transparent w-full flex-auto font-franklin text-2xl font-bold text-black-100 outline-none placeholder:uppercase placeholder:text-gray-200 sm:text-3xl"
+              name="searchonsection"
+              id="searchonsection"
+              placeholder="search"
+              value={filterValue}
+              onChange={(e) => setFilterValue(e.target.value)}
+            />
+            <button className="text-3xl text-gray-300">{svgSearch}</button>
+          </form>
+        </div>
+      </section>
+      <NewsDisplay filter={filter} />
     </div>
   );
 };

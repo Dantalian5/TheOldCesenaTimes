@@ -18,9 +18,9 @@ const App = () => {
           <TopMenu />
           <div className={`${showNavbar ? "hidden" : "block"} lg:block`}>
             <Routes>
-              {/* <Route path="/" element={<Home />} />
-              <Route path="/section/:section" element={<Section />} /> */}
-              <Route path="/" element={<Search />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/section/:section" element={<Section />} />
+              <Route path="/search/:filter" element={<Search />} />
             </Routes>
             <Footer />
           </div>
