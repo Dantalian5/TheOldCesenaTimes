@@ -1,16 +1,16 @@
+import { useState, useEffect, memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import NewsColumn from "@/components/NewsColumn";
 import { svgLoading } from "@/assets/svgImg";
-import { memo } from "react";
+import { apiFetch } from "@/api/apiFetch";
 
-const DisplayNews = ({ filter, url }) => {
+const DisplayNews = ({ filter, section }) => {
   const { isPending, error, data } = useQuery({
     queryKey: ["nytdata"],
-    queryFn: () => axios.get(url.href).then((res) => res.data),
+    queryFn: () => apiFetch(section),
   });
 
   if (isPending)
@@ -44,12 +44,13 @@ const DisplayNews = ({ filter, url }) => {
   );
 };
 const Section = memo(() => {
+  console.log("render Sections");
   const { state } = useLocation();
-  const nytUrl = new URL(
-    `/svc/topstories/v2/${state.url}.json?api-key=${String(import.meta.env.VITE_API_KEY)}`,
-    "https://api.nytimes.com",
-  );
-  console.log("render sections");
+  const [section, setSection] = useState<string>(state.url);
+  useEffect(() => {
+    setSection(state.url);
+  }, [state]);
+
   return (
     <div>
       <header className="flex justify-center border-b border-b-gray-200 ">
@@ -69,7 +70,7 @@ const Section = memo(() => {
           {state.section}
         </p>
       </div>
-      <DisplayNews filter={state.subsection} url={nytUrl} />
+      <DisplayNews filter={state.subsection} section={section} />
     </div>
   );
 });

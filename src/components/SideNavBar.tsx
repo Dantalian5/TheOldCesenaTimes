@@ -21,6 +21,9 @@ const SideNavBar = () => {
     dispatch(setFilter(filterValue));
     dispatch(hideNav());
   };
+  const onCLickHandle = () => {
+    dispatch(hideNav());
+  };
 
   return (
     <nav className="absolute left-0 top-0 z-20 min-h-screen w-full bg-white pb-6 pt-0 lg:left-11 lg:w-80 lg:shadow-sidemenu">
@@ -63,6 +66,7 @@ const SideNavBar = () => {
                   section: section,
                   subsection: "",
                 }}
+                onClick={onCLickHandle}
               >
                 <span className="font-franklin text-lg font-semibold tracking-tight">
                   {section}
@@ -109,6 +113,7 @@ const SideNavBar = () => {
                                 subsection: item[2],
                                 parent: section,
                               }}
+                              onClick={onCLickHandle}
                             >
                               <span className="font-franklin text-base font-medium">
                                 {item[0]}

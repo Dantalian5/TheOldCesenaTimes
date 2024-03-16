@@ -1,22 +1,16 @@
 import { memo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import NewsGrid from "@/components/NewsGrid";
 import { svgLoading } from "@/assets/svgImg";
-
-const nytUrl = new URL(
-  "/svc/topstories/v2/home.json?api-key=" +
-    String(import.meta.env.VITE_API_KEY),
-  "https://api.nytimes.com",
-);
+import { apiFetch } from "@/api/apiFetch";
 
 const DisplayNews = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ["nytdata"],
-    queryFn: () => axios.get(nytUrl.href).then((res) => res.data),
+    queryFn: () => apiFetch("home"),
   });
   if (isPending)
     return (
