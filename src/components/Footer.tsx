@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import { Link } from "react-router-dom";
 import { footerItems } from "@/assets/menuItems";
 const Footer = memo(() => {
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -14,7 +15,7 @@ const Footer = memo(() => {
         <h3 className=" mt-1.5 py-2.5 font-aguafina text-2xl font-normal">
           The Old Cesena Times
         </h3>
-        <div className="lg:mb-4 lg:flex lg:justify-between">
+        <div className="lg:mb-4 lg:flex lg:justify-start lg:gap-40">
           {Object.entries(footerItems).map(([section, subsection]) => (
             <div key={section}>
               <span className="mb-[1px] block h-[1px] w-full bg-gray-200 lg:hidden"></span>
@@ -35,12 +36,25 @@ const Footer = memo(() => {
                   <ul className=" flex-1" key={index}>
                     {column.map((item, index) => (
                       <li className="mb-4 lg:mb-1" key={index}>
-                        <a
-                          className="font-franklin text-sm font-medium text-gray-600 underline-offset-2  hover:underline"
-                          href="#"
-                        >
-                          {item}
-                        </a>
+                        {item[0] === "Home Page" ? (
+                          <Link to={`/`}>
+                            <span className="font-franklin text-sm font-medium text-gray-600 underline-offset-2  hover:underline">
+                              {item[0]}
+                            </span>
+                          </Link>
+                        ) : (
+                          <Link
+                            to={`/section/${item[0]}`}
+                            state={{
+                              title: item[0],
+                              section: item[1],
+                            }}
+                          >
+                            <span className="font-franklin text-sm font-medium text-gray-600 underline-offset-2  hover:underline">
+                              {item[0]}
+                            </span>
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -59,10 +73,7 @@ const Footer = memo(() => {
           {[
             ["MV", "https://marcosvalenzuela.netlify.app"],
             ["Work with me", "https://marcosvalenzuela.netlify.app"],
-            ["Advertise", "#"],
             ["Contact Me", "https://marcosvalenzuela.netlify.app"],
-            ["Accesibility", "#"],
-            ["Privacy Policy", "#"],
             ["start2impact University", "https://www.start2impact.it"],
           ].map((item) => (
             <a
@@ -85,7 +96,7 @@ const Footer = memo(() => {
         </a>
         <a href="https://developer.nytimes.com/" title="nyt atribution">
           <img
-            src="assets/images/poweredby_nytimes_200a.png"
+            src="assets/images/nytatribution.png"
             width="200"
             alt="nyt-atribution-logo"
             className="mx-auto"

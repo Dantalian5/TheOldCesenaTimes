@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAppSelector } from "@/redux/hooks";
 import Home from "@/pages/Home";
 import Section from "@/pages/Section";
+import Search from "@/pages/Search";
 import TopMenu from "@/components/TopMenu";
 import Footer from "@/components/Footer";
 
@@ -17,8 +18,9 @@ const App = () => {
           <TopMenu />
           <div className={`${showNavbar ? "hidden" : "block"} lg:block`}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/section/:section" element={<Section />} />
+              {/* <Route path="/" element={<Home />} />
+              <Route path="/section/:section" element={<Section />} /> */}
+              <Route path="/" element={<Search />} />
             </Routes>
             <Footer />
           </div>

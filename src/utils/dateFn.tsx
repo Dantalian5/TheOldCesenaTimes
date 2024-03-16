@@ -1,11 +1,17 @@
-export const fnSetDate = (type: "short" | "long", date) => {
+export const fnSetDate = (type: "short" | "long" | "shorter", date) => {
   let dateProps: {
     weekday?: string;
-    year: string;
+    year?: string;
     month: string;
     day: string;
   };
   switch (type) {
+    case "shorter":
+      dateProps = {
+        month: "long",
+        day: "numeric",
+      };
+      break;
     case "short":
       dateProps = {
         year: "numeric",

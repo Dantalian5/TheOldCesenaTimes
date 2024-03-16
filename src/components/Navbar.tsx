@@ -15,9 +15,8 @@ const Navbar = memo(() => {
             <Link
               to={`/section/${sectionInfo.section}`}
               state={{
-                url: sectionInfo.section,
-                section: section,
-                subsection: "",
+                title: section,
+                section: sectionInfo.section,
               }}
             >
               <span className="cursor-pointer border-b-2 border-white group-hover:border-black-100">
@@ -51,13 +50,13 @@ const Navbar = memo(() => {
                                         : item[1]
                                     }`}
                                     state={{
-                                      url:
+                                      title: item[0],
+                                      subtitle: section,
+                                      section:
                                         item[1] === ""
                                           ? sectionInfo.section
                                           : item[1],
-                                      section: item[0],
-                                      subsection: item[2],
-                                      parent: section,
+                                      filter: item[2],
                                     }}
                                   >
                                     <span className="font-franklin text-sm font-medium">

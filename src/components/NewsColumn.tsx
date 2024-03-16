@@ -1,4 +1,5 @@
 import { memo, useEffect, useState } from "react";
+// import { useAppSelector } from "@/redux/hooks";
 import type { TypeArticle } from "@/types";
 import { svgSearch, svgClose } from "@/assets/svgImg";
 import {
@@ -11,6 +12,10 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
   const [activeTab, setActiveTab] = useState<"search" | "latest">("latest");
   const [filterValue, setFilterValue] = useState<string>("");
   const [opinionatedData, setOpinionatedData] = useState<TypeArticle[]>(data);
+  // const filter = useAppSelector((state) => state.filter.value);
+  // const dataMap = data.filter((item) =>
+  //   fnFilterText(filter, [item.title, item.abstract, item.byline]),
+  // );
 
   useEffect(() => {
     setOpinionatedData(
@@ -47,6 +52,8 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
               <span className="text-base">{svgSearch}</span>
               <input
                 type="text"
+                id="tab-search-input"
+                name="tab-search-input"
                 placeholder="Search"
                 className="block max-w-[20vw] cursor-pointer font-franklin text-base font-bold text-gray-300 outline-none placeholder:text-gray-300 group-[.is-active]:cursor-text group-[.is-active]:placeholder:text-gray-200 sm:max-w-[40vw] "
                 value={activeTab === "search" ? filterValue : ""}

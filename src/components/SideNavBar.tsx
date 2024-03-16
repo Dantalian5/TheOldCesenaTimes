@@ -62,9 +62,8 @@ const SideNavBar = () => {
               <Link
                 to={`/section/${sectionInfo.section}`}
                 state={{
-                  url: sectionInfo.section,
-                  section: section,
-                  subsection: "",
+                  title: section,
+                  section: sectionInfo.section,
                 }}
                 onClick={onCLickHandle}
               >
@@ -105,13 +104,13 @@ const SideNavBar = () => {
                                   : item[1]
                               }`}
                               state={{
-                                url:
+                                title: item[0],
+                                subtitle: section,
+                                section:
                                   item[1] === ""
                                     ? sectionInfo.section
                                     : item[1],
-                                section: item[0],
-                                subsection: item[2],
-                                parent: section,
+                                filter: item[2],
                               }}
                               onClick={onCLickHandle}
                             >

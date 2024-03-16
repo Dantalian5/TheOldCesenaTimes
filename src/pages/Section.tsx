@@ -1,54 +1,14 @@
 import { useState, useEffect, memo } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import NewsColumn from "@/components/NewsColumn";
-import { svgLoading } from "@/assets/svgImg";
-import { apiFetch } from "@/api/apiFetch";
-
-const DisplayNews = ({ filter, section }) => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["nytdata"],
-    queryFn: () => apiFetch(section),
-  });
-
-  if (isPending)
-    return (
-      <p className="mx-auto flex max-w-[1285px] flex-col items-center gap-2 px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-        Loading... <span className="text-3xl">{svgLoading}</span>
-      </p>
-    );
-
-  if (error)
-    return (
-      <p className="mx-auto max-w-[1285px] px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-        Error retrieving data. Please refresh the page or try again in a few
-        minutes.
-      </p>
-    );
-  const news =
-    filter === ""
-      ? data.results
-      : data.results.filter((item) => item.subsection === filter);
-  return (
-    <ErrorBoundary
-      fallback={
-        <p className="mx-auto max-w-[1285px] px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-          Ups...something went wrong, please try again later
-        </p>
-      }
-    >
-      <NewsColumn data={news.length > 0 ? news : data.results} />
-    </ErrorBoundary>
-  );
-};
+import NewsDisplay from "@/components/NewsDisplay";
 const Section = memo(() => {
   console.log("render Sections");
   const { state } = useLocation();
-  const [section, setSection] = useState<string>(state.url);
+  const [sectionState, setSectionState] = useState(state);
   useEffect(() => {
-    setSection(state.url);
+    setSectionState(state);
+    console.log(state);
   }, [state]);
 
   return (
@@ -61,16 +21,20 @@ const Section = memo(() => {
         </Link>
       </header>
       <div className="mx-auto mb-4 mt-8 max-w-[1285px] px-5 lg:px-11">
-        {state.subsection !== "" && (
+        {sectionState.filter !== "" && (
           <span className=" mb-2 font-baskerville text-base font-bold text-black-100">
-            {state.parent}
+            {state.subtitle}
           </span>
         )}
         <p className=" font-baskerville text-3xl font-bold text-black-100">
-          {state.section}
+          {sectionState.title}
         </p>
       </div>
-      <DisplayNews filter={state.subsection} section={section} />
+      <NewsDisplay
+        type="list"
+        filter={sectionState.filter}
+        section={sectionState.section}
+      />
     </div>
   );
 });
