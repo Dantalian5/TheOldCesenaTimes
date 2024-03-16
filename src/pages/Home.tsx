@@ -13,7 +13,7 @@ const nytUrl = new URL(
   "https://api.nytimes.com",
 );
 
-const DisplayNews = ({ filter }) => {
+const DisplayNews = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ["nytdata"],
     queryFn: () => axios.get(nytUrl.href).then((res) => res.data),
@@ -40,18 +40,17 @@ const DisplayNews = ({ filter }) => {
         </p>
       }
     >
-      <NewsGrid data={data.results} filter={filter} />
+      <NewsGrid data={data.results} />
     </ErrorBoundary>
   );
 };
 const Home = memo(() => {
-  const filter = "";
-  console.log("render home");
+  console.log("render Home");
   return (
     <div>
       <Header />
       <Navbar />
-      <DisplayNews filter={filter} />
+      <DisplayNews />
     </div>
   );
 });

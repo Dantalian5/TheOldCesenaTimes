@@ -22,7 +22,7 @@ export interface TypeArticle {
   created_date?: string;
   published_date?: string;
   material_type_facet?: string;
-  kicker?: string;
+  kicker: string;
   des_facet?: string[];
   org_facet?: string[];
   per_facet?: string[];

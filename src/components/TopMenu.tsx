@@ -1,33 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { setFilter } from "@/redux/filterSlice";
+import { toogleNav } from "@/redux/navbarSlice";
 import SideNavBar from "./SideNavBar";
 import { svgMenu, svgPerson, svgSearch } from "@/assets/svgImg";
 
-const TopMenu = ({
-  showMenu,
-  setShowMenu,
-}: {
-  showMenu: boolean;
-  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-  const [filterValue, setFilterValue] = useState<string>("");
+const TopMenu = () => {
+  console.log("render TopMenu");
+  const filter = useAppSelector((state) => state.filter.value);
+  const showNavbar = useAppSelector((state) => state.navbar.show);
+  const dispatch = useAppDispatch();
+  const [filterValue, setFilterValue] = useState<string>(filter);
   const [showFilter, setShowFilter] = useState<boolean>(false);
-  //   const [filter, setFilter] = useState<string>("");
-  //   useEffect(() => {
-  //     setFilterValue(filter);
-  //   }, [filter]);
+
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(setFilter(filterValue));
+    setShowFilter(false);
+  };
+  useEffect(() => {
+    setFilterValue(filter);
+  }, [filter]);
+
   return (
     <div className="absolute left-1/2 top-0 z-50 mx-auto h-0 w-full max-w-[1285px] -translate-x-1/2">
-      {showMenu && (
-        <SideNavBar
-          setNavbar={setShowMenu}
-          setFilter={setFilterValue}
-          filter={filterValue}
-        />
-      )}
+      {showNavbar && <SideNavBar />}
       <div className="absolute left-0 top-2 flex gap-x-2 lg:left-11 lg:top-1">
         <button
           className="flex cursor-pointer items-center justify-between rounded px-5 py-2 text-xl text-black-100 hover:bg-gray-100 lg:p-2"
-          onClick={() => setShowMenu((prev: boolean) => !prev)}
+          onClick={() => dispatch(toogleNav())}
           title="Menu"
         >
           {svgMenu}
@@ -44,10 +45,7 @@ const TopMenu = ({
           </button>
           {showFilter && (
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                console.log(filterValue);
-              }}
+              onSubmit={onFormSubmit}
               className=" absolute  -right-2 top-1/2 flex -translate-y-1/2 translate-x-full items-center gap-x-3"
             >
               <input

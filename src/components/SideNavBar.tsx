@@ -1,39 +1,39 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { setFilter } from "@/redux/filterSlice";
+import { hideNav } from "@/redux/navbarSlice";
 import { svgArrow, svgClose } from "@/assets/svgImg";
 import { navbarItems } from "@/utils/menuItems";
 
-const SideNavBar = ({
-  setNavbar,
-  setFilter,
-  filter,
-}: {
-  setNavbar: React.Dispatch<React.SetStateAction<boolean>>;
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
-  filter: string;
-}) => {
+const SideNavBar = () => {
   console.log("render SideNavBar");
+  const filter = useAppSelector((state) => state.filter.value);
+  const dispatch = useAppDispatch();
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const [filterValue, setFilterValue] = useState<string>(filter);
   const handleClick = (key: string | null) => {
     setActiveKey(activeKey === key ? null : key);
   };
+
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(setFilter(filterValue));
+    dispatch(hideNav());
+  };
+
   return (
-    <nav className=" absolute left-0 top-0 z-20 min-h-full w-full bg-white pb-6 pt-0 lg:min-h-0 lg:w-80 lg:shadow-sidemenu">
+    <nav className="absolute left-0 top-0 z-20 min-h-screen w-full bg-white pb-6 pt-0 lg:left-11 lg:w-80 lg:shadow-sidemenu">
       <div className=" sticky top-0 z-10 bg-white p-6">
         <button
           className="mb-9 cursor-pointer text-3xl text-black-100"
-          onClick={() => setNavbar(false)}
+          onClick={() => dispatch(hideNav())}
           title="close menu"
         >
           {svgClose}
         </button>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setFilter(filterValue);
-            setNavbar(false);
-          }}
+          onSubmit={onFormSubmit}
           className="flex items-stretch gap-x-3 lg:hidden"
         >
           <input

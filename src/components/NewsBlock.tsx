@@ -1,7 +1,7 @@
 import PodcastCard from "@/components/PodcastCard";
+import type { TypeArticle } from "@/utils/types";
 type dataProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
+  data: TypeArticle[];
   index?: number;
   side: "left" | "right";
 };
@@ -10,13 +10,13 @@ const headerKicker = (kicker: string, byline: string, section: string = "") => {
   switch (true) {
     case kicker === "News Analysis":
       return (
-        <p className="text-xxs mb-1.5 font-franklin font-semibold uppercase text-black-100">
+        <p className="mb-1.5 font-franklin text-xxs font-semibold uppercase text-black-100">
           Analysis
         </p>
       );
     case kicker === "Guest Essay" || section === "opinion":
       return (
-        <p className="text-xxs mb-1.5 font-baskerville font-bold uppercase text-gray-300">
+        <p className="mb-1.5 font-baskerville text-xxs font-bold uppercase text-gray-300">
           {byline.replace("By", "")}
         </p>
       );
@@ -25,6 +25,7 @@ const headerKicker = (kicker: string, byline: string, section: string = "") => {
   }
 };
 const NewsBlock = ({ data, index = 1, side }: dataProps) => {
+  console.log(data);
   return (
     //inicio de seccion
     <section className="border-t-2 border-black-100 py-2">
@@ -61,12 +62,14 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
                     {data[0].title}
                   </h2>
                 </div>
-
-                <img
-                  className={`hidden h-[90px] w-[90px] ${side === "right" && "lg:block"}`}
-                  src={data[0].multimedia[2].url}
-                  alt={data[0].multimedia[2].caption}
-                />
+                {data[0].multimedia !== null &&
+                  data[0].multimedia !== undefined && (
+                    <img
+                      className={`hidden h-[90px] w-[90px] ${side === "right" && "lg:block"}`}
+                      src={data[0].multimedia[2].url}
+                      alt={data[0].multimedia[2].caption}
+                    />
+                  )}
               </div>
               <p
                 className={`font-pt text-base font-normal text-gray-400 ${side === "right" && "lg:hidden"}`}
@@ -76,24 +79,26 @@ const NewsBlock = ({ data, index = 1, side }: dataProps) => {
             </a>
           </div>
         )}
-        {data[0].section !== "podcasts" && (
-          // block image
-          <div
-            className={` self-top py-4 sm:col-span-6 sm:col-start-5 sm:row-span-2 sm:row-start-1 ${side === "right" && "lg:hidden"}`}
-          >
-            <picture>
-              <source srcSet={data[0].multimedia[1].url} />
-              <img
-                className="w-full"
-                src={data[0].multimedia[2].url}
-                alt={data[0].multimedia[2].caption}
-              />
-            </picture>
-            <p className="text-xxs ml-auto mt-1 w-fit font-franklin text-gray-300">
-              {data[0].multimedia[0].copyright}
-            </p>
-          </div>
-        )}
+        {data[0].section !== "podcasts" &&
+          data[0].multimedia !== null &&
+          data[0].multimedia !== undefined && (
+            // block image
+            <div
+              className={` self-top py-4 sm:col-span-6 sm:col-start-5 sm:row-span-2 sm:row-start-1 ${side === "right" && "lg:hidden"}`}
+            >
+              <picture>
+                <source srcSet={data[0].multimedia[1].url} />
+                <img
+                  className="w-full"
+                  src={data[0].multimedia[2].url}
+                  alt={data[0].multimedia[2].caption}
+                />
+              </picture>
+              <p className="ml-auto mt-1 w-fit font-franklin text-xxs text-gray-300">
+                {data[0].multimedia[0].copyright}
+              </p>
+            </div>
+          )}
         {data.length > 1 && (
           // news #2
           <div
