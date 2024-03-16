@@ -1,53 +1,12 @@
 import { memo, useEffect, useState } from "react";
-import { TypeArticle } from "@/utils/types";
+import type { TypeArticle } from "@/types";
 import { svgSearch, svgClose } from "@/assets/svgImg";
-
-const dateFn = (date) => {
-  const objectDate = new Date(date);
-  const formatedDate = objectDate.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-  return formatedDate;
-};
-const byFn = (byline) => {
-  const parts = byline.split(" ");
-  const transformedParts = parts.map((part) => {
-    return part.toLowerCase() === "and" || part.toLowerCase() === "by"
-      ? part
-      : part.toUpperCase();
-  });
-  const transformedText = transformedParts.join(" ");
-  return transformedText;
-};
-const filterFn = (data: TypeArticle[], filter: string) => {
-  if (filter === "") {
-    return data;
-  } else {
-    const filteredData = data.filter(
-      (item) =>
-        item.title.toLowerCase().includes(filter.toLowerCase()) ||
-        item.abstract.toLowerCase().includes(filter.toLowerCase()) ||
-        item.byline.toLowerCase().includes(filter.toLowerCase()),
-    );
-    return filteredData;
-  }
-};
-const markedFn = (element, filter) => {
-  return element.split(new RegExp(`(${filter})`, "gi")).map((part, index) => (
-    <span
-      key={index}
-      style={
-        part.toLowerCase() === filter.toLowerCase()
-          ? { backgroundColor: "#567B94", color: "#ffffff", fontWeight: "700" }
-          : {}
-      }
-    >
-      {part}
-    </span>
-  ));
-};
+import {
+  fnHighlightText,
+  fnSetDate,
+  fnUppercaseBy,
+  fnFilterText,
+} from "@/utils";
 const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
   const [activeTab, setActiveTab] = useState<"search" | "latest">("latest");
   const [filterValue, setFilterValue] = useState<string>("");
@@ -55,7 +14,11 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
 
   useEffect(() => {
     setOpinionatedData(
-      filterFn(data, activeTab === "search" ? filterValue : ""),
+      activeTab === "latest"
+        ? data
+        : data.filter((item) =>
+            fnFilterText(filterValue, [item.title, item.abstract, item.byline]),
+          ),
     );
   }, [data, filterValue, activeTab]);
 
@@ -135,25 +98,28 @@ const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
                     >
                       {activeTab === "latest"
                         ? item.title
-                        : markedFn(item.title, filterValue)}
+                        : fnHighlightText(item.title, filterValue)}
                     </h2>
                     <p
                       className={`font-pt text-xs font-normal text-gray-700 sm:text-sm`}
                     >
                       {activeTab === "latest"
                         ? item.abstract
-                        : markedFn(item.abstract, filterValue)}
+                        : fnHighlightText(item.abstract, filterValue)}
                     </p>
                     <p
                       className={`hidden pb-1 pt-3 font-franklin text-xxs font-normal text-gray-300 sm:block `}
                     >
                       {activeTab === "latest"
-                        ? byFn(item.byline)
-                        : markedFn(byFn(item.byline), filterValue)}
+                        ? fnUppercaseBy(item.byline)
+                        : fnHighlightText(
+                            fnUppercaseBy(item.byline),
+                            filterValue,
+                          )}
                     </p>
                   </article>
                   <span className="block min-w-32 font-franklin text-xxs font-normal text-gray-300 sm:py-2">
-                    {dateFn(item.updated_date)}
+                    {fnSetDate("short", new Date(item.updated_date))}
                   </span>
                 </li>
               ),

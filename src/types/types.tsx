@@ -18,7 +18,7 @@ export interface TypeArticle {
   uri: string;
   byline: string;
   item_type?: string;
-  updated_date?: string;
+  updated_date: string;
   created_date?: string;
   published_date?: string;
   material_type_facet?: string;
@@ -29,4 +29,18 @@ export interface TypeArticle {
   geo_facet?: string[];
   multimedia?: TypeMultimedia[];
   short_url?: string;
+}
+type BaseSection = [string, string][][];
+export type TypeFooterItems = {
+  [category: string]: BaseSection;
+};
+interface Subsection {
+  [key: string]: string[][] | string[][][];
+}
+interface Category {
+  section: string;
+  subsection: Subsection;
+}
+export interface TypeNavbarItems {
+  [category: string]: Category;
 }

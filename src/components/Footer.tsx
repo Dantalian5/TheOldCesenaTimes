@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { footerItems } from "@/utils/menuItems";
+import { footerItems } from "@/assets/menuItems";
 const Footer = memo(() => {
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const handleClick = (key: string | null) => {
@@ -53,7 +53,7 @@ const Footer = memo(() => {
       <hr className="mb-[1px] h-[1px] w-full bg-gray-200" />
       <section className="px-5 py-3 lg:px-0">
         <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-2.5">
-          <p className="text-xxs mb-2 w-full text-center font-franklin font-normal text-gray-500 lg:mb-0 lg:w-auto">
+          <p className="mb-2 w-full text-center font-franklin text-xxs font-normal text-gray-500 lg:mb-0 lg:w-auto">
             © 2024 The Old Cesena Times | by MV
           </p>
           {[
@@ -68,7 +68,7 @@ const Footer = memo(() => {
             <a
               key={item[0]}
               href={item[1]}
-              className="text-xxs cursor-pointer font-franklin font-normal text-gray-600"
+              className="cursor-pointer font-franklin text-xxs font-normal text-gray-600"
             >
               {item[0]}
             </a>
@@ -79,7 +79,7 @@ const Footer = memo(() => {
       <section className="px-5 py-3 lg:px-0">
         <a
           href="https://developer.nytimes.com/"
-          className="text-xxs mb-6 block text-center font-franklin font-normal text-gray-500"
+          className="mb-6 block text-center font-franklin text-xxs font-normal text-gray-500"
         >
           Data provided by The New York Times
         </a>
@@ -92,7 +92,7 @@ const Footer = memo(() => {
           />
         </a>
 
-        <p className="text-xxs mb-6 py-2 text-center font-franklin font-normal text-gray-500">
+        <p className="mb-6 py-2 text-center font-franklin text-xxs font-normal text-gray-500">
           We extend our gratitude to the nyt-api and start2impact University.
           This project is an academic endeavor, designed solely for educational
           purposes within the realm of web development. We appreciate your

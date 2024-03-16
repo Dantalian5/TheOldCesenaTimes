@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { setFilter } from "@/redux/filterSlice";
 import { hideNav } from "@/redux/navbarSlice";
 import { svgArrow, svgClose } from "@/assets/svgImg";
-import { navbarItems } from "@/utils/menuItems";
+import { navbarItems } from "@/assets/menuItems";
 
 const SideNavBar = () => {
   console.log("render SideNavBar");
@@ -50,7 +50,7 @@ const SideNavBar = () => {
         </form>
       </div>
       <ul className="px-6">
-        {Object.entries(navbarItems[0]).map(([section, sectionInfo]) => (
+        {Object.entries(navbarItems).map(([section, sectionInfo]) => (
           <li
             className="w-full border-b border-gray-200 last:border-0"
             key={section}

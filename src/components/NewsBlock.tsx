@@ -1,5 +1,5 @@
 import PodcastCard from "@/components/PodcastCard";
-import type { TypeArticle } from "@/utils/types";
+import type { TypeArticle } from "@/types";
 type dataProps = {
   data: TypeArticle[];
   index?: number;
@@ -25,7 +25,6 @@ const headerKicker = (kicker: string, byline: string, section: string = "") => {
   }
 };
 const NewsBlock = ({ data, index = 1, side }: dataProps) => {
-  console.log(data);
   return (
     //inicio de seccion
     <section className="border-t-2 border-black-100 py-2">

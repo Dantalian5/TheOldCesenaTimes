@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { useAppSelector } from "@/redux/hooks";
 import NewsBlock from "@/components/NewsBlock";
-import { filterFn } from "@/utils/filterFn";
-import { TypeArticle } from "@/utils/types";
+import { fnFilterText } from "@/utils";
+import type { TypeArticle } from "@/types";
 
 type Props = {
   data: TypeArticle[];
@@ -12,7 +12,9 @@ const NewsGrid = memo(({ data }: Props) => {
   console.log("render NewsGrid");
   const filter = useAppSelector((state) => state.filter.value);
   const newsMap: Array<Array<Array<TypeArticle>>> = [];
-  const dataMap = filterFn(data, filter);
+  const dataMap = data.filter((item) =>
+    fnFilterText(filter, [item.title, item.abstract, item.byline]),
+  );
   const opinionIndex: number = dataMap.findIndex(
     (item) => item.section === "opinion",
   );
