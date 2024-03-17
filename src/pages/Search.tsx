@@ -192,7 +192,6 @@ const Search = () => {
                 <option value="any">Any Section</option>
                 <option value="arts">Arts</option>
                 <option value="books">Books</option>
-                <option value="business">Business</option>
                 <option value="new york">New York</option>
                 <option value="opinion">Opinion</option>
                 <option value="sports">Sports</option>

@@ -1,11 +1,48 @@
-import { memo } from "react";
+import { memo, useEffect, useRef, useState, useReducer } from "react";
 import { Link } from "react-router-dom";
 import { svgArrow } from "@/assets/svgImg";
 import { navbarItems } from "@/assets/menuItems";
 
+const visibilityReducer = (state, action) => {
+  switch (action.type) {
+    case "VISIBLE":
+      return { ...state, isVisible: true };
+    case "HIDDEN":
+      return { ...state, isVisible: false };
+    default:
+      return state;
+  }
+};
+
 const Navbar = memo(() => {
+  const [state, dispatch] = useReducer(visibilityReducer, { isVisible: true });
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const referent = ref.current;
+    const observer = new IntersectionObserver((entries) => {
+      entries[0].isIntersecting
+        ? dispatch({ type: "VISIBLE" })
+        : dispatch({ type: "HIDDEN" });
+    });
+
+    if (referent) {
+      observer.observe(referent);
+    }
+    return () => {
+      if (referent) {
+        observer.unobserve(referent);
+      }
+    };
+  }, []);
+
+  console.log(state);
+
   return (
-    <nav className="sticky top-0 z-10 mx-auto mb-1  hidden max-w-[1285px] bg-white px-5 lg:block lg:px-11">
+    <nav
+      ref={ref}
+      className=" top-0 z-10 mx-auto mb-1  hidden max-w-[1285px] bg-white px-5 lg:block lg:px-11"
+    >
       <ul className="flex items-center justify-center border-y border-b-black-100 border-t-gray-200">
         {Object.entries(navbarItems).map(([section, sectionInfo]) => (
           <li
