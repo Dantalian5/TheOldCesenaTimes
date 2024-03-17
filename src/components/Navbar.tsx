@@ -1,47 +1,56 @@
-import { memo, useEffect, useRef, useState, useReducer } from "react";
+import { memo, useEffect, useRef, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import { svgArrow } from "@/assets/svgImg";
 import { navbarItems } from "@/assets/menuItems";
 
-const visibilityReducer = (state, action) => {
-  switch (action.type) {
-    case "VISIBLE":
-      return { ...state, isVisible: true };
-    case "HIDDEN":
-      return { ...state, isVisible: false };
-    default:
-      return state;
-  }
-};
-
 const Navbar = memo(() => {
-  const [state, dispatch] = useReducer(visibilityReducer, { isVisible: true });
-  const ref = useRef(null);
+  const [isSticky, setSticky] = useState(false);
+  const navbarRef = useRef<HTMLDivElement | null>(null);
+  const timeoutId = useRef<number | null>(null);
+
+  const handleObserver: IntersectionObserverCallback = (entries) => {
+    const [entry] = entries;
+    if (!entry.isIntersecting) {
+      // Inicia el temporizador cuando la barra de navegación sale de la vista
+      timeoutId.current = setTimeout(() => {
+        setSticky(true);
+      }, 200);
+    } else {
+      // Limpia el temporizador si la barra de navegación vuelve a entrar en la vista antes de que el temporizador expire
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
+        timeoutId.current = null;
+      }
+      setSticky(false);
+    }
+  };
 
   useEffect(() => {
-    const referent = ref.current;
-    const observer = new IntersectionObserver((entries) => {
-      entries[0].isIntersecting
-        ? dispatch({ type: "VISIBLE" })
-        : dispatch({ type: "HIDDEN" });
+    const referente = navbarRef.current;
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: [0],
     });
-
-    if (referent) {
-      observer.observe(referent);
+    if (referente) {
+      observer.observe(referente);
     }
+
     return () => {
-      if (referent) {
-        observer.unobserve(referent);
+      if (referente) {
+        observer.unobserve(referente);
+      }
+      // Asegúrate de limpiar el temporizador cuando el componente se desmonte
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
       }
     };
-  }, []);
+  }, [navbarRef]);
 
-  console.log(state);
+  console.log(isSticky);
 
   return (
     <nav
-      ref={ref}
-      className=" top-0 z-10 mx-auto mb-1  hidden max-w-[1285px] bg-white px-5 lg:block lg:px-11"
+      ref={navbarRef}
+      className={`top-0 z-10 mx-auto mb-1  hidden max-w-[1285px] bg-white px-5 lg:block lg:px-11 ${isSticky ? "fixed" : "static"}`}
     >
       <ul className="flex items-center justify-center border-y border-b-black-100 border-t-gray-200">
         {Object.entries(navbarItems).map(([section, sectionInfo]) => (
