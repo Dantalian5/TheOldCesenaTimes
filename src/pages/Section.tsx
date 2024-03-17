@@ -8,7 +8,6 @@ const Section = memo(() => {
   const [sectionState, setSectionState] = useState(state);
   useEffect(() => {
     setSectionState(state);
-    console.log(state);
   }, [state]);
 
   return (

@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, memo } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { setFilter } from "@/redux/filterSlice";
 import { hideNav } from "@/redux/navbarSlice";
 import { svgArrow, svgClose } from "@/assets/svgImg";
 import { navbarItems } from "@/assets/menuItems";
 
-const SideNavBar = () => {
+const SideNavBar = memo(() => {
   console.log("render SideNavBar");
+  const navigate = useNavigate();
+  const showNavbar = useAppSelector((state) => state.navbar.show);
   const filter = useAppSelector((state) => state.filter.value);
   const dispatch = useAppDispatch();
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -20,13 +22,16 @@ const SideNavBar = () => {
     e.preventDefault();
     dispatch(setFilter(filterValue));
     dispatch(hideNav());
+    navigate(`/search/filter?=${filterValue}`);
   };
   const onCLickHandle = () => {
     dispatch(hideNav());
   };
 
   return (
-    <nav className="absolute left-0 top-0 z-20 min-h-screen w-full bg-white pb-6 pt-0 lg:left-11 lg:w-80 lg:shadow-sidemenu">
+    <nav
+      className={`absolute left-0 top-0 z-20 min-h-screen w-full bg-white pb-6 pt-0 lg:left-11 lg:w-80 lg:shadow-sidemenu ${showNavbar ? "block" : "hidden"}`}
+    >
       <div className=" sticky top-0 z-10 bg-white p-6">
         <button
           className="mb-9 cursor-pointer text-3xl text-black-100"
@@ -130,6 +135,6 @@ const SideNavBar = () => {
       </ul>
     </nav>
   );
-};
+});
 
 export default SideNavBar;

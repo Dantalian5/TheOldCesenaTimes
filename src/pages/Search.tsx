@@ -184,8 +184,8 @@ const Search = () => {
             <div className="relative w-fit p-1">
               <select
                 className="bg-transparent relative z-10 appearance-none py-1 pl-2 pr-8 font-franklin text-xs font-bold text-gray-500"
-                name="section"
-                id="section"
+                name="filterSectionSearch"
+                id="filterSectionSearch"
                 value={section}
                 onChange={(e) => setSection(e.target.value)}
               >
@@ -193,7 +193,7 @@ const Search = () => {
                 <option value="arts">Arts</option>
                 <option value="books">Books</option>
                 <option value="business">Business</option>
-                <option value="nyregion">New York</option>
+                <option value="new york">New York</option>
                 <option value="opinion">Opinion</option>
                 <option value="sports">Sports</option>
                 <option value="us">U.S.</option>
@@ -206,8 +206,8 @@ const Search = () => {
             <div className="relative w-fit p-1">
               <select
                 className="bg-transparent relative z-10 appearance-none py-1 pl-2 pr-8 font-franklin text-xs font-bold text-gray-500"
-                name="section"
-                id="section"
+                name="filterTypeSearch"
+                id="filterTypeSearch"
                 value={typeNews}
                 onChange={(e) => setTypeNews(e.target.value)}
               >

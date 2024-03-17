@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { setFilter } from "@/redux/filterSlice";
@@ -6,10 +6,9 @@ import { toogleNav } from "@/redux/navbarSlice";
 import SideNavBar from "./SideNavBar";
 import { svgMenu, svgPerson, svgSearch } from "@/assets/svgImg";
 
-const TopMenu = () => {
+const TopMenu = memo(() => {
   console.log("render TopMenu");
   const filter = useAppSelector((state) => state.filter.value);
-  const showNavbar = useAppSelector((state) => state.navbar.show);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [filterValue, setFilterValue] = useState<string>(filter);
@@ -27,7 +26,7 @@ const TopMenu = () => {
 
   return (
     <div className="absolute left-1/2 top-0 z-50 mx-auto h-0 w-full max-w-[1285px] -translate-x-1/2">
-      {showNavbar && <SideNavBar />}
+      <SideNavBar />
       <div className="absolute left-0 top-2 flex gap-x-2 lg:left-11 lg:top-1">
         <button
           className="flex cursor-pointer items-center justify-between rounded px-5 py-2 text-xl text-black-100 hover:bg-gray-100 lg:p-2"
@@ -80,6 +79,6 @@ const TopMenu = () => {
       </button>
     </div>
   );
-};
+});
 
 export default TopMenu;

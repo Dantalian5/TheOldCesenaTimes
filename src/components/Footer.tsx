@@ -12,7 +12,7 @@ const Footer = memo(() => {
       <section className="px-5 lg:px-0">
         <hr className="mb-[1px] h-0.5 w-full bg-gray-200" />
         <span className="mb-[1px] block h-[1px] w-full bg-gray-200"></span>
-        <h3 className=" mt-1.5 py-2.5 font-aguafina text-2xl font-normal">
+        <h3 className=" mt-1.5 py-2.5 font-aguafina text-2xl font-normal lg:text-center">
           The Old Cesena Times
         </h3>
         <div className="lg:mb-4 lg:flex lg:justify-center lg:gap-40">

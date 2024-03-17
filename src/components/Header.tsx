@@ -19,7 +19,7 @@ const Header = memo(() => {
           The Old Cesena Times
         </h1>
       </Link>
-      <span className="border-grey-200 col-span-1 col-start-1 hidden border-y bg-white sm:block lg:hidden"></span>
+      <span className="border-grey-200 col-span-1 col-start-1 row-start-2 hidden border-y bg-white sm:block lg:hidden"></span>
       <p className="border-grey-200 sm col-span-2 col-start-1 row-start-2 border-y bg-gray-100 px-5 py-3 font-franklin text-xxs font-bold text-black-100 sm:col-span-2 sm:col-start-2 sm:bg-white sm:text-center lg:col-span-1 lg:col-start-1 lg:self-center lg:border-0 lg:p-0 lg:text-left lg:text-xs">
         {fnSetDate("long", new Date())}
         <br />
