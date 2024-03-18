@@ -7,7 +7,6 @@ import SideNavBar from "./SideNavBar";
 import { svgMenu, svgPerson, svgSearch } from "@/assets/svgImg";
 
 const TopMenu = memo(() => {
-  console.log("render TopMenu");
   const filter = useAppSelector((state) => state.filter.value);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -69,7 +68,9 @@ const TopMenu = memo(() => {
         className="absolute right-0 top-2 cursor-pointer px-5 py-2 lg:right-11 lg:top-1 lg:p-0"
         title="Log in"
         onClick={() => {
-          console.log("click on sign in");
+          console.log(
+            "Sign in is not implemented yet, sorry for the inconvenience",
+          );
         }}
       >
         <span className="hidden rounded border border-blue-300 bg-blue-200 px-4 py-2 font-franklin text-xxs font-bold uppercase text-white transition-colors duration-500 hover:bg-blue-300 lg:block">

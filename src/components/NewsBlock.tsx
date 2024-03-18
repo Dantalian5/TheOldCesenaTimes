@@ -24,7 +24,7 @@ const headerKicker = (kicker: string, byline: string, section: string = "") => {
       return null;
   }
 };
-const NewsBlock = ({ data, index = 1, side }: dataProps) => {
+const NewsBlock: React.FC<dataProps> = ({ data, index = 1, side }) => {
   return (
     //inicio de seccion
     <section className="border-t-2 border-black-100 py-2">

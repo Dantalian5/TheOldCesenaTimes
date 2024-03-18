@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NewsDisplay from "@/components/NewsDisplay";
 const Section = memo(() => {
-  console.log("render Sections");
   const { state } = useLocation();
   const [sectionState, setSectionState] = useState(state);
   useEffect(() => {

@@ -8,7 +8,6 @@ import TopMenu from "@/components/TopMenu";
 import Footer from "@/components/Footer";
 
 const App = () => {
-  console.log("render App");
   const showNavbar = useAppSelector((state) => state.navbar.show);
   const queryClient = new QueryClient();
   return (

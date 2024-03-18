@@ -1,124 +1,17 @@
 import { useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
-import { useQuery } from "@tanstack/react-query";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { setFilter } from "@/redux/filterSlice";
-import { svgLoading, svgSearch, svgArrow } from "@/assets/svgImg";
-import { apiSearch } from "@/api/apiFetch";
-import { fnSetDate } from "@/utils";
+import { svgSearch, svgArrow } from "@/assets/svgImg";
+import SearchDisplay from "@/components/SearchDisplay";
 
-const NewsSearch = (data) => {
-  console.log("render NewsSearch");
-  return (
-    <section className="pb-8">
-      <ol className="mx-auto px-6 lg:max-w-[840px]">
-        {data.data.map(
-          (item, index) =>
-            item.title !== "" && (
-              <li
-                key={index}
-                className=" flex flex-col justify-end border-t border-gray-200 py-5 align-top sm:flex-row"
-              >
-                <span className="mb-2 block min-w-32 font-franklin text-xxs font-normal text-gray-300">
-                  {fnSetDate("shorter", new Date(item.pub_date))}
-                </span>
-                <article className="mb-1 flex min-h-32 flex-1 gap-3 sm:gap-10">
-                  <div className="flex-1">
-                    <p className="mb-2 font-franklin text-xxs font-medium uppercase text-gray-600">
-                      {item.subsection_name === null ||
-                      item.subsection_name === undefined
-                        ? item.section_name
-                        : item.subsection_name}
-                    </p>
-                    <h2
-                      className={`mb-2 font-baskerville text-sm font-normal text-black-100 sm:text-xl`}
-                    >
-                      {item.headline.main}
-                    </h2>
-                    <p
-                      className={`font-pt text-xs font-normal text-gray-700 sm:text-sm`}
-                    >
-                      {item.abstract}
-                    </p>
-                    <p
-                      className={`my-2 font-baskerville text-xxs font-normal text-black-100`}
-                    >
-                      {item.byline.original}
-                    </p>
-                  </div>
-                  {item.multimedia.length > 0 && (
-                    <img
-                      className={`my-6 h-[80px] w-[120px] min-w-[120px] object-cover sm:my-0 lg:h-[136px] lg:w-[205px]`}
-                      src={"http://static01.nyt.com/" + item.multimedia[0].url}
-                      alt="image"
-                    />
-                  )}
-                </article>
-              </li>
-            ),
-        )}
-      </ol>
-    </section>
-  );
-};
-type NewsDisplayProps = {
-  filter: string;
-  sortBy: string;
-  sectionFilter: string;
-  typeFilter: string;
-};
-const NewsDisplay = memo(
-  ({ filter, sortBy, sectionFilter, typeFilter }: NewsDisplayProps) => {
-    console.log("render NewsDisplay");
-    const { isPending, error, data } = useQuery({
-      queryKey: [filter, sortBy, sectionFilter, typeFilter],
-      queryFn: () => apiSearch(filter, sortBy, sectionFilter, typeFilter),
-      staleTime: 0,
-      gcTime: 0,
-      refetchOnMount: true,
-    });
-    if (isPending)
-      return (
-        <p className="mx-auto flex max-w-[1285px] flex-col items-center gap-2 px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-          Loading... <span className="text-3xl">{svgLoading}</span>
-        </p>
-      );
-
-    if (error)
-      return (
-        <p className="mx-auto max-w-[1285px] px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-          Error retrieving data. Please refresh the page or try again in a few
-          minutes.
-        </p>
-      );
-    return (
-      <ErrorBoundary
-        fallback={
-          <p className="mx-auto max-w-[1285px] px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-            Ups...something went wrong, please try again later
-          </p>
-        }
-      >
-        {data.response.docs.length > 0 ? (
-          <NewsSearch data={data.response.docs} />
-        ) : (
-          <p className="mx-auto max-w-[1285px] px-5 py-10 text-center font-franklin font-bold text-black-100 lg:px-11">
-            No results found
-          </p>
-        )}
-      </ErrorBoundary>
-    );
-  },
-);
-
-const Search = () => {
-  console.log("render Search");
+const Search = memo(() => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector((state) => state.filter.value);
   const [sortBy, setSortBy] = useState<string>("relevance");
   const [section, setSection] = useState<string>("any");
   const [typeNews, setTypeNews] = useState<string>("any");
+  const [page, setPage] = useState<number>(0);
   const [filterValue, setFilterValue] = useState<string>(filter);
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -128,7 +21,6 @@ const Search = () => {
     setFilterValue(filter);
   }, [filter]);
 
-  console.log(sortBy);
   return (
     <div>
       <header className="flex justify-center border-b border-b-gray-200 ">
@@ -138,7 +30,6 @@ const Search = () => {
           </h1>
         </Link>
       </header>
-      <div className="mx-auto mb-4 mt-8 max-w-[1285px] px-5 lg:px-11"></div>
       <section className=" bg-gray-100 py-7">
         <div className="mx-auto px-6 lg:max-w-[840px]">
           <p className="mb-1 font-franklin text-xs font-normal text-gray-500">
@@ -221,14 +112,48 @@ const Search = () => {
           </div>
         </div>
       </section>
-      <NewsDisplay
+      <SearchDisplay
         filter={filter}
         sortBy={sortBy}
         sectionFilter={section}
         typeFilter={typeNews}
+        pageFilter={page}
       />
+      <div className="mx-auto max-w-[1285px]  px-5 lg:px-11">
+        <ol className="flex w-full items-center justify-center gap-2 border-t border-t-gray-200 pt-2">
+          <li className="mr-4">
+            <button
+              className={`border-transparent border-b-2 font-franklin text-xs font-bold text-gray-300 hover:border-b-black-100`}
+              onClick={() => setPage((prev) => (prev > 0 ? prev - 1 : prev))}
+            >
+              Prev
+            </button>
+          </li>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
+            <li
+              key={index}
+              className={`px-1 ${index === 0 || index === 9 || index === page ? "block" : "hidden sm:block"}`}
+            >
+              <button
+                className={`border-b-2 font-franklin text-xs font-bold ${index === page ? "border-b-black-100 text-black-100" : "border-b-transparent text-gray-300"}`}
+                onClick={() => setPage(index)}
+              >
+                {item}
+              </button>
+            </li>
+          ))}
+          <li className="mr-4">
+            <button
+              className={`border-transparent border-b-2 font-franklin text-xs font-bold text-gray-300 hover:border-b-black-100`}
+              onClick={() => setPage((prev) => (prev < 9 ? prev + 1 : prev))}
+            >
+              Next
+            </button>
+          </li>
+        </ol>
+      </div>
     </div>
   );
-};
+});
 
 export default Search;

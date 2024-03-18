@@ -1,5 +1,4 @@
-import { memo, useEffect, useState } from "react";
-// import { useAppSelector } from "@/redux/hooks";
+import React, { memo, useEffect, useState } from "react";
 import type { TypeArticle } from "@/types";
 import { svgSearch, svgClose } from "@/assets/svgImg";
 import {
@@ -8,14 +7,12 @@ import {
   fnUppercaseBy,
   fnFilterText,
 } from "@/utils";
-const NewsColumn = memo(({ data }: { data: TypeArticle[] }) => {
+
+type Props = { data: TypeArticle[] };
+const NewsColumn: React.FC<Props> = memo(({ data }) => {
   const [activeTab, setActiveTab] = useState<"search" | "latest">("latest");
   const [filterValue, setFilterValue] = useState<string>("");
   const [opinionatedData, setOpinionatedData] = useState<TypeArticle[]>(data);
-  // const filter = useAppSelector((state) => state.filter.value);
-  // const dataMap = data.filter((item) =>
-  //   fnFilterText(filter, [item.title, item.abstract, item.byline]),
-  // );
 
   useEffect(() => {
     setOpinionatedData(

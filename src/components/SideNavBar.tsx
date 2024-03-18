@@ -7,7 +7,6 @@ import { svgArrow, svgClose } from "@/assets/svgImg";
 import { navbarItems } from "@/assets/menuItems";
 
 const SideNavBar = memo(() => {
-  console.log("render SideNavBar");
   const navigate = useNavigate();
   const showNavbar = useAppSelector((state) => state.navbar.show);
   const filter = useAppSelector((state) => state.filter.value);

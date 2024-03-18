@@ -13,6 +13,7 @@ export const apiSearch = (
   sortBy: string,
   sectionValue: string,
   docType: string,
+  pageValue: number,
 ) => {
   const base: string = "https://api.nytimes.com";
   const fq: string[] = [];
@@ -22,7 +23,8 @@ export const apiSearch = (
   const encodedFq = fq.length > 0 ? encodeURI(`fq=${fq.join(" AND ")}&`) : "";
   const encodedQ = `q=${searchValue}`;
   const encodedSort = `sort=${sortBy}`;
-  const route: string = `/svc/search/v2/articlesearch.json?${encodedFq}${encodedQ}&${encodedSort}&api-key=${apiKey}`;
+  const encodedPage = pageValue > 0 ? `page=${pageValue}&` : "";
+  const route: string = `/svc/search/v2/articlesearch.json?${encodedFq}${encodedPage}${encodedQ}&${encodedSort}&api-key=${apiKey}`;
   const url = new URL(route, base);
 
   const data = axios.get(url.href).then((res) => res.data);

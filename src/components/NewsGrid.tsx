@@ -6,8 +6,7 @@ type Props = {
   data: TypeArticle[];
 };
 
-const NewsGrid = memo(({ data }: Props) => {
-  console.log("render NewsGrid");
+const NewsGrid: React.FC<Props> = memo(({ data }) => {
   const newsMap: Array<Array<Array<TypeArticle>>> = [];
 
   const opinionIndex: number = data.findIndex(

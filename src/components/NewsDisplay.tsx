@@ -10,7 +10,7 @@ type Props = {
   filter: string;
   section: string;
 };
-const NewsDisplay = ({ type, section, filter }: Props) => {
+const NewsDisplay: React.FC<Props> = ({ type, section, filter }) => {
   const { isPending, error, data } = useQuery({
     queryKey: [section],
     queryFn: () => apiFetch(section),
