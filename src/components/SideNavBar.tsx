@@ -32,7 +32,7 @@ const SideNavBar = memo(() => {
 
   return (
     <nav
-      className={`absolute left-0 top-0 z-20 min-h-screen w-full bg-white pb-6 pt-0 lg:left-11 lg:w-80 lg:shadow-sidemenu ${showNavbar ? "block" : "hidden"}`}
+      className={`fixed bottom-0 left-0 top-0 z-50 w-full bg-white pb-6 pt-0 lg:left-11 lg:w-80 lg:shadow-sidemenu ${showNavbar ? "block" : "hidden"} overflow-y-auto`}
     >
       <div className=" sticky top-0 z-10 bg-white p-6">
         <button
