@@ -48,7 +48,7 @@ const Navbar = memo(() => {
                                   <Link
                                     to={`/section/${
                                       item[1] === ""
-                                        ? sectionInfo.section + "-" + item[2]
+                                        ? sectionInfo.section + "/" + item[2]
                                         : item[1]
                                     }`}
                                     state={{

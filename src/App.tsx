@@ -17,7 +17,8 @@ const App = () => {
           <TopMenu />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/section/:section" element={<Section />} />
+            <Route path="/section/:section/" element={<Section />} />
+            <Route path="/section/:section/:subsection" element={<Section />} />
             <Route path="/search/:filter" element={<Search />} />
           </Routes>
           <Footer />
