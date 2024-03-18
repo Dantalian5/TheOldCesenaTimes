@@ -79,21 +79,32 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](public/assets/screenshot.jpg)
+<div align="center">
+    <img src="public/assets/screenshots/toct-home.jpg" alt="Logo" width="80%" height="auto" >
+ </div>
 
 Academic project from the React course at [start2impact](https://www.start2impact.it). The Old Cesena Times is a clone of the renowned newspaper [The New York Times](https://www.nytimes.com), where, always respecting the copyright and licenses of the latter, the goal is to recreate as closely as possible the features and functionalities of the original, while efficiently utilizing its provided [API](https://developer.nytimes.com/apis).
+
+<div align="center">
+    <img src="public/assets/screenshots/toct-section.jpg" alt="Logo" width="40%" height="auto" >
+    <img src="public/assets/screenshots/toct-search.jpg" alt="Logo" width="40%" height="auto" >
+ </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-- HTML5 semantic markup
-- React.js
+- HTML5 ( semantic markup )
+- React.js (JS Framework)
   - React Router
+  - Redux
+  - React Query
   - Axios
-- Vite
-- Tailwind CSS
-- Typescript
+  - React Error Boundary
+- Vite ( bundler )
+- Tailwind CSS ( CSS Framework )
+- Typescript ( typescript compiler )
+- ESLint ( linter )
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,7 +129,7 @@ Academic project from the React course at [start2impact](https://www.start2impac
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Dantalian5/TheOldCesenaTimes.git
+   git clone https://github.com/Dantalian5/TheOldCesenaTimes
    ```
 2. Install NPM packages
    ```sh
@@ -146,15 +157,19 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ### S2I tasks:
 
+#### Version 1.0
+
 - [x] Replica of the NYT homepage.
-- [ ] Replica of the NYT section pages.
 - [x] Fetch news from the API and display them on the homepage.
 - [x] Simple and user-friendly UI and UX. Organized and understandable app structure.
 - [x] Responsive design.
 
-### Features:
+#### Version 1.2
 
-- [x] Search trought the page.
+- [x] Replica of the NYT section pages.
+- [x] Replica of NYT Search Page - adding NYT Search API
+- [x] Optimice fetch using React Query & Axios
+- [x] Improve error handling mixing React error boundarys & react query
 
 See the [open issues](https://github.com/Dantalian5/TheOldCesenaTimes/issues) for a full list of proposed features (and known issues).
 
@@ -223,4 +238,4 @@ Project Link: [https://github.com/Dantalian5/TheOldCesenaTimes](https://github.c
 [license-url]: https://github.com/Dantalian5/TheOldCesenaTimes/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/marcos-valenzuela-coding
-[product-screenshot]: public/assets/screenshot.jpg
+[product-screenshot]: public/assets/screenshots/toct-home.jpg
