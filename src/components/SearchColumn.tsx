@@ -5,7 +5,7 @@ import { fnSetDate } from "@/utils";
 const SearchColumn: React.FC<any> = memo((data) => {
   return (
     <section className="pb-8">
-      <ol className="mx-auto px-6 lg:max-w-[840px]">
+      <ol className="mx-auto max-w-[840px] px-6">
         {data.data.map(
           (item, index) =>
             item.title !== "" && (
@@ -25,7 +25,7 @@ const SearchColumn: React.FC<any> = memo((data) => {
                         : item.subsection_name}
                     </p>
                     <h2
-                      className={`mb-2 font-baskerville text-sm font-normal text-black-100 sm:text-xl`}
+                      className={`mb-2 break-all font-baskerville text-sm font-normal text-black-100 sm:text-xl`}
                     >
                       {item.headline.main}
                     </h2>
