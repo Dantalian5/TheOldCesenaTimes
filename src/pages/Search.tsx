@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { setFilter } from "@/redux/filterSlice";
 import { svgSearch, svgArrow } from "@/assets/svgImg";
@@ -7,6 +7,7 @@ import SearchDisplay from "@/components/SearchDisplay";
 
 const Search = memo(() => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const filter = useAppSelector((state) => state.filter.value);
   const [sortBy, setSortBy] = useState<string>("relevance");
   const [section, setSection] = useState<string>("any");
@@ -16,6 +17,7 @@ const Search = memo(() => {
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(setFilter(filterValue));
+    navigate(`/search/filter?=${filterValue}`);
   };
   useEffect(() => {
     setFilterValue(filter);

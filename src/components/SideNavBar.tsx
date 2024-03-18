@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, memo, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { setFilter } from "@/redux/filterSlice";
@@ -26,6 +26,9 @@ const SideNavBar = memo(() => {
   const onCLickHandle = () => {
     dispatch(hideNav());
   };
+  useEffect(() => {
+    setFilterValue(filter);
+  }, [filter]);
 
   return (
     <nav
